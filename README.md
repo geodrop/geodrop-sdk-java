@@ -8,10 +8,9 @@ Except as otherwise noted, it is licensed under the [Apache Licence, Version 2.0
 
 Usage
 -----
-Import the jar files: 
-* [geodropSDKjava_1.0.jar] (...)
+Import the jar files: [geodropSDKjava_1.0.jar] (https://github.com/geodrop/geodrop-sdk-java/blob/master/geodropSDKjava_1.0.jar)
 ```
-The [examples](...) are a good place to start.
+The [examples](https://github.com/geodrop/geodrop-sdk-java/tree/master/examples) are a good place to start.
 To create a new session you must import:
 ```java
 import geodropSDKjava.*;
@@ -51,7 +50,7 @@ if(session.runMethod(requestPortChallenge))
 
 Documentation
 -----
-The documentation is available in the [doc folder](...).
+The documentation is available in the [doc folder](https://github.com/geodrop/geodrop-sdk-java/tree/master/doc).
 
 Versioning
 -----
@@ -65,4 +64,4 @@ Additional labels for pre-release and build metadata are available as extensions
 
 Bug report
 -----
-If you find a bug [open an issue](...) and report the problem.
+If you find a bug [open an issue](https://github.com/geodrop/geodrop-sdk-java/issues) and report the problem.
