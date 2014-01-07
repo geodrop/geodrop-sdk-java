@@ -1,7 +1,7 @@
-import geodropSDKjava.*;
-import geodropSDKjava.dropPay.CustomerCheck;
-import geodropSDKjava.dropPay.CustomerCheck_Response;
-import geodropSDKjava.dropPay.PortChargeSubscriptionPurchases;
+import com.geodrop.*;
+import com.geodrop.DropPay.CustomerCheck;
+import com.geodrop.DropPay.CustomerCheck_Response;
+import com.geodrop.DropPay.PortChargeSubscriptionPurchases;
 
 public class DropPayCheckChargeSubscription
 {

@@ -1,7 +1,7 @@
-import geodropSDKjava.*;
-import geodropSDKjava.dropPay.PortChallenge;
-import geodropSDKjava.dropPay.PortChallenge_Response;
-import geodropSDKjava.dropPay.CustomerWelcome;
+import com.geodrop.*;
+import com.geodrop.DropPay.PortChallenge;
+import com.geodrop.DropPay.PortChallenge_Response;
+import com.geodrop.DropPay.CustomerWelcome;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 

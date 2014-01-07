@@ -1,6 +1,6 @@
 import java.util.Vector;
-import geodropSDKjava.*;
-import geodropSDKjava.dropOut.SMSSend;
+import com.geodrop.*;
+import com.geodrop.DropOut.SMSSend;
 
 public class DropOutSend
 {
