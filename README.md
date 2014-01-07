@@ -8,8 +8,7 @@ Except as otherwise noted, it is licensed under the [Apache Licence, Version 2.0
 
 Usage
 -----
-Import the jar files: [geodropSDKjava_1.0.jar] (https://github.com/geodrop/geodrop-sdk-java/blob/master/geodropSDKjava_1.0.jar)
-```
+Import the jar file [geodropSDKjava_1.0.jar] (https://github.com/geodrop/geodrop-sdk-java/blob/master/geodropSDKjava_1.0.jar).
 The [examples](https://github.com/geodrop/geodrop-sdk-java/tree/master/examples) are a good place to start.
 To create a new session you must import:
 ```java
