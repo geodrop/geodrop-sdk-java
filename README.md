@@ -16,8 +16,8 @@ import geodropSDKjava.*;
 ```
 Then you can create a session:
 ```java
-GeodropSession session = 
-	SessionFactory.buildSession_ResourceOwnerPasswordCredentials(applicationId, applicationSecret, username, password);
+GeodropSession session = SessionFactory.buildSession_ResourceOwnerPasswordCredentials(
+						applicationId, applicationSecret, username, password);
 ```
 To send an SMS:
 ```java
