@@ -1,4 +1,4 @@
-geodrop-sdk-php
+geodrop-sdk-java
 ===============
 
 [Geodrop](https://geodrop.com/) is a provider of services and applications for the mobile market.
