@@ -12,7 +12,7 @@ Import the jar file [geodropSDKjava_1.0.jar] (https://github.com/geodrop/geodrop
 The [examples](https://github.com/geodrop/geodrop-sdk-java/tree/master/examples) are a good place to start.
 To create a new session you must import:
 ```java
-import geodropSDKjava.*;
+import com.geodrop.*;
 ```
 Then you can create a session:
 ```java
@@ -21,7 +21,7 @@ GeodropSession session = SessionFactory.buildSession_ResourceOwnerPasswordCreden
 ```
 To send an SMS:
 ```java
-import geodropSDKjava.dropOut.SMSSend;
+import com.geodrop.DropOut.SMSSend;
 ...
 SMSSend requestSMSSend = new SMSSend(vectorOfMsisdns,"message text","sender");
 session.runMethod(requestSMSSend);
@@ -31,9 +31,9 @@ To challenge a customer to confirm the telephone number in content provider init
 and to charge the customer:
 
 ```java
-import geodropSDKjava.dropPay.PortChallenge;
-import geodropSDKjava.dropPay.PortChallenge_Response;
-import geodropSDKjava.dropPay.PortChargeOnDemandPurchases;
+import com.geodrop.DropPay.PortChallenge;
+import com.geodrop.DropPay.PortChallenge_Response;
+import com.geodrop.DropPay.PortChargeOnDemandPurchases;
 ...
 PortChallenge requestPortChallenge = new PortChallenge(port, msisdn, "PortChallenge: pin: $$PIN$$");
 if(session.runMethod(requestPortChallenge))
