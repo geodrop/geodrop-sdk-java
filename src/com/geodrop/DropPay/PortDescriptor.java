@@ -56,14 +56,14 @@ public class PortDescriptor extends GeodropRequest
 	}
 
 	@Override
-	public boolean decodeResponse(String httpResponse) 
+	protected boolean decodeResponse(String httpResponse) 
 	{
 		this.response = new PortDescriptor_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 
 	@Override
-	public void createParams() 
+	protected void createParams() 
 	{
 		this.params = new HashMap<String, Object>();
 		if(this.port != 0)
@@ -74,7 +74,7 @@ public class PortDescriptor extends GeodropRequest
 
 	//getters
 	/**
-	 * @return The port number
+	 * @return DropPay port id
 	 */
 	public int getPort() 
 	{
@@ -83,7 +83,7 @@ public class PortDescriptor extends GeodropRequest
 
 	//setters
 	/**
-	 * @param port The port number
+	 * @param port DropPay port id
 	 */
 	public void setPort(int port) 
 	{

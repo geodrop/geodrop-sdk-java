@@ -18,11 +18,11 @@ public class Report
 	 */
 	private String status;
 
-	 /**
-	  * The job GUID
-	  */
+	/**
+	 * The job GUID
+	 */
 	private String orderId;
-
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -37,7 +37,7 @@ public class Report
 
 	//getters
 	/**
-	 * @return The msisdn
+	 * @return The telephone number in E.164 format
 	 */
 	public String getMsisdn() 
 	{
@@ -45,7 +45,7 @@ public class Report
 	}
 
 	/**
-	 * @return The status
+	 * @return Status of the request
 	 */
 	public String getStatus() 
 	{
@@ -53,7 +53,7 @@ public class Report
 	}
 
 	/**
-	 * @return The orderId
+	 * @return The job GUID
 	 */
 	public String getOrderId() 
 	{
@@ -62,7 +62,7 @@ public class Report
 
 	//setters
 	/**
-	 * @param msisdn The msisdn to set
+	 * @param msisdn The telephone number in E.164 format
 	 */
 	public void setMsisdn(String msisdn) 
 	{
@@ -70,7 +70,7 @@ public class Report
 	}
 
 	/**
-	 * @param status The status to set
+	 * @param status Status of the request
 	 */
 	public void setStatus(String status) 
 	{
@@ -78,7 +78,7 @@ public class Report
 	}
 
 	/**
-	 * @param orderId The orderId to set
+	 * @param orderId The job GUID
 	 */
 	public void setOrderId(String orderId) 
 	{

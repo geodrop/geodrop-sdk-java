@@ -23,6 +23,8 @@ public class Listener
      * Listener URI
      */
     private String uri;
+    
+    Listener(){}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -37,7 +39,7 @@ public class Listener
 
 	//getters
 	/**
-	 * @return The lclass
+	 * @return The Event class
 	 */
 	public String getLclass() 
 	{
@@ -45,7 +47,7 @@ public class Listener
 	}
 
 	/**
-	 * @return The type
+	 * @return The Event type
 	 */
 	public String getType() 
 	{
@@ -53,7 +55,7 @@ public class Listener
 	}
 
 	/**
-	 * @return The uri
+	 * @return The Listener URI
 	 */
 	public String getUri() 
 	{
@@ -62,7 +64,7 @@ public class Listener
 
 	//setters
 	/**
-	 * @param lclass The lclass to set
+	 * @param lclass The Event class
 	 */
 	public void setLclass(String lclass) 
 	{
@@ -70,7 +72,7 @@ public class Listener
 	}
 
 	/**
-	 * @param type The type to set
+	 * @param type The Event type
 	 */
 	public void setType(String type) 
 	{
@@ -78,7 +80,7 @@ public class Listener
 	}
 
 	/**
-	 * @param uri The uri to set
+	 * @param uri The Listener URI
 	 */
 	public void setUri(String uri) 
 	{

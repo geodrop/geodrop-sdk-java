@@ -42,6 +42,8 @@ public class PortChargePurchases_Response extends GeodropResponse
 	 */
 	private String description;
 	  
+	PortChargePurchases_Response(){}
+	
 	@Override
 	public String toString() 
 	{
@@ -83,7 +85,7 @@ public class PortChargePurchases_Response extends GeodropResponse
 
 	//getters
 	/**
-	 * @return The msisdn
+	 * @return Customer phone number in E.164 format (without +)
 	 */
 	public String getMsisdn() 
 	{
@@ -91,7 +93,7 @@ public class PortChargePurchases_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The mno
+	 * @return The Mno
 	 */
 	public String getMno() 
 	{
@@ -99,7 +101,7 @@ public class PortChargePurchases_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The id
+	 * @return The id to be used to match with notification of listeners
 	 */
 	public String getId()
 	{
@@ -107,7 +109,7 @@ public class PortChargePurchases_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The code
+	 * @return Error code
 	 */
 	public int getCode() 
 	{
@@ -115,7 +117,7 @@ public class PortChargePurchases_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The description
+	 * @return Verbose description of the error
 	 */
 	public String getDescription()
 	{

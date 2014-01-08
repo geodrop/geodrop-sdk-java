@@ -8,7 +8,6 @@ import com.geodrop.ContentType;
 import com.geodrop.ErrorType;
 import com.geodrop.GeodropRequest;
 import com.geodrop.HttpMethod;
-import com.geodrop.MustacheTemplate;
 import com.geodrop.Uri;
 
 /**
@@ -113,14 +112,14 @@ public class SMSStatusRange extends GeodropRequest
 	}
 	
 	@Override
-	public boolean decodeResponse(String httpResponse) 
+	protected boolean decodeResponse(String httpResponse) 
 	{
 		this.response = new SMSStatus_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 
 	@Override
-	public void createParams() 
+	protected void createParams() 
 	{
 		this.params = new HashMap<String, Object>();
 		this.params.put("client_id", this.clientId);
@@ -152,7 +151,10 @@ public class SMSStatusRange extends GeodropRequest
 	}
 
 	/**
-	 * @return The limit
+	 * @return The limit used to paginate the result,
+	 * it consist of two integers separated by a comma,
+	 * the first one indicates the position of the first required result
+	 * and the second the total number of result to return
 	 */
 	public String getRangeLimit() 
 	{
@@ -185,7 +187,10 @@ public class SMSStatusRange extends GeodropRequest
 	}
 
 	/**
-	 * @param rangeLimit The limit
+	 * @param rangeLimit The limit used to paginate the result,
+	 * it consist of two integers separated by a comma,
+	 * the first one indicates the position of the first required result
+	 * and the second the total number of result to return
 	 */
 	public void setRangeLimit(String rangeLimit) 
 	{

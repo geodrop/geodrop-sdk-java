@@ -16,6 +16,7 @@ import com.geodrop.DropOut.Report;
  */
 public abstract class GeodropResponse 
 { 
+	  protected GeodropResponse(){}
 	  /**
 	   * Performs the parsing of the http response
 	   * and fills the field of the <CODE>GeodropResponse</CODE>

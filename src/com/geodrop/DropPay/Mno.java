@@ -28,6 +28,8 @@ public class Mno
      */
     private int shortcode;
     
+    Mno(){}
+    
 	@Override
 	public String toString() 
 	{
@@ -39,7 +41,7 @@ public class Mno
 
 	//getters
 	/**
-	 * @return The brand
+	 * @return Short identifier label for network operator
 	 */
 	public String getBrand() 
 	{
@@ -47,7 +49,7 @@ public class Mno
 	}
 
 	/**
-	 * @return The mcnc
+	 * @return Double value parameter made of two dot separated integers
 	 */
 	public String getMcnc() 
 	{
@@ -55,7 +57,7 @@ public class Mno
 	}
 
 	/**
-	 * @return The operator
+	 * @return Long network operator description
 	 */
 	public String getOperator() 
 	{
@@ -63,7 +65,9 @@ public class Mno
 	}
 
 	/**
-	 * @return The shortcode
+	 * @return The shortcode enabled for short messaging features;
+     * it is used as sender of short messages pertinent to the payment port,
+     * and/or recipient for requests coming from customers (reply messages or purchasing actions)
 	 */
 	public int getShortcode() 
 	{
@@ -72,7 +76,7 @@ public class Mno
 
 	//setters
 	/**
-	 * @param brand The brand to set
+	 * @param brand Short identifier label for network operator
 	 */
 	public void setBrand(String brand) 
 	{
@@ -80,7 +84,7 @@ public class Mno
 	}
 
 	/**
-	 * @param mcnc The mcnc to set
+	 * @param mcnc Double value parameter made of two dot separated integers
 	 */
 	public void setMcnc(String mcnc) 
 	{
@@ -88,7 +92,7 @@ public class Mno
 	}
 
 	/**
-	 * @param operator The operator to set
+	 * @param operator Long network operator description
 	 */
 	public void setOperator(String operator) 
 	{
@@ -96,7 +100,9 @@ public class Mno
 	}
 
 	/**
-	 * @param shortcode The shortcode to set
+	 * @param shortcode The shortcode is enabled for short messaging features;
+     * it is used as sender of short messages pertinent to the payment port,
+     * and/or recipient for requests coming from customers (reply messages or purchasing actions)
 	 */
 	public void setShortcode(int shortcode) 
 	{

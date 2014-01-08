@@ -60,6 +60,8 @@ public class SMSJobsScheduled_Response extends GeodropResponse
 	 */
 	private String errorDescription;
 
+	SMSJobsScheduled_Response(){}
+	
 	@Override
 	public String toString() 
 	{
@@ -126,7 +128,7 @@ public class SMSJobsScheduled_Response extends GeodropResponse
 
 	//getters
 	/**
-	 * @return The job ID
+	 * @return The job id of the job
 	 */
 	public String getJobId() 
 	{
@@ -134,7 +136,8 @@ public class SMSJobsScheduled_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The job transaction
+	 * @return “OK” or “KO” values,
+	 * indicating respectively the global success or failure of the transaction
 	 */
 	public String getJobTransaction() 
 	{
@@ -142,7 +145,7 @@ public class SMSJobsScheduled_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The job cause
+	 * @return A short description of any problems
 	 */
 	public String getJobCause() 
 	{
@@ -150,7 +153,7 @@ public class SMSJobsScheduled_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The deferred time
+	 * @return Date and time used to send the message
 	 */
 	public Date getDeferred() 
 	{
@@ -158,7 +161,7 @@ public class SMSJobsScheduled_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The message text
+	 * @return Text of the message
 	 */
 	public String getMessageText() 
 	{
@@ -166,7 +169,7 @@ public class SMSJobsScheduled_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The tpoa
+	 * @return The personalized sender
 	 */
 	public String getTpoa() 
 	{
@@ -174,7 +177,7 @@ public class SMSJobsScheduled_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The error code
+	 * @return The internal code of the error if any
 	 */
 	public String getErrorCode() 
 	{
@@ -182,7 +185,7 @@ public class SMSJobsScheduled_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The error description
+	 * @return The description of the error if any
 	 */
 	public String getErrorDescription() 
 	{

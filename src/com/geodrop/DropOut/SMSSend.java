@@ -9,7 +9,6 @@ import com.geodrop.ContentType;
 import com.geodrop.ErrorType;
 import com.geodrop.GeodropRequest;
 import com.geodrop.HttpMethod;
-import com.geodrop.MustacheTemplate;
 import com.geodrop.Uri;
 
 /**
@@ -29,7 +28,7 @@ public class SMSSend extends GeodropRequest
      */
     private String messageText;
     /**
-     * Contains the msisdn of the recipient or an array of msisdns if there are many recipients;
+     * Contains the msisdns of the recipients;
      * each msisdn is in E.164 format with '+'
      */
     private Vector<String> destMsisdns;
@@ -110,14 +109,14 @@ public class SMSSend extends GeodropRequest
     }
     
 	@Override
-	public boolean decodeResponse(String httpResponse)
+	protected boolean decodeResponse(String httpResponse)
 	{
 		this.response = new SMSSend_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 
 	@Override
-	public void createParams() 
+	protected void createParams() 
 	{
 		this.params = new HashMap<String, Object>();
 		this.params.put("message", this.messageText);
@@ -132,7 +131,7 @@ public class SMSSend extends GeodropRequest
 
 	//getters
 	/**
-	 * @return The message text
+	 * @return The text of the message to send
 	 */
 	public String getMessageText() 
 	{
@@ -140,7 +139,8 @@ public class SMSSend extends GeodropRequest
 	}
 
 	/**
-	 * @return The msisdns
+	 * @return The vector of msisdns of the recipients;
+     * each msisdn is in E.164 format with '+'
 	 */
 	public Vector<String> getDestMsisdns() 
 	{
@@ -148,7 +148,7 @@ public class SMSSend extends GeodropRequest
 	}
 
 	/**
-	 * @return The tpoa
+	 * @return The tpoa used to specify the personalized sender
 	 */
 	public String getTpoa() 
 	{
@@ -156,7 +156,9 @@ public class SMSSend extends GeodropRequest
 	}
 
 	/**
-	 * @return The deferred time
+	 * @return Date and time in the format "Y-m-d H:i:s",
+     * used to send the message to a certain date,
+     * if not specified the message is sent immediately
 	 */
 	public Date getDeferred() 
 	{
@@ -165,7 +167,7 @@ public class SMSSend extends GeodropRequest
 	
 	//setters
 	/**
-	 * @param messageText The message text
+	 * @param messageText The text of the message to send
 	 */
 	public void setMessageText(String messageText) 
 	{
@@ -173,7 +175,8 @@ public class SMSSend extends GeodropRequest
 	}
 
 	/**
-	 * @param destMsisdns The msisdns
+	 * @param destMsisdns The vector of msisdns of the recipients;
+     * each msisdn is in E.164 format with '+'
 	 */
 	public void setDestMsisdns(Vector<String> destMsisdns) 
 	{
@@ -181,7 +184,7 @@ public class SMSSend extends GeodropRequest
 	}
 
 	/**
-	 * @param tpoa The tpoa
+	 * @param tpoa The tpoa used to specify the personalized sender
 	 */
 	public void setTpoa(String tpoa) 
 	{
@@ -189,7 +192,9 @@ public class SMSSend extends GeodropRequest
 	}
 
 	/**
-	 * @param deferred The deferred time
+	 * @param deferred Date and time in the format "Y-m-d H:i:s",
+     * used to send the message to a certain date,
+     * if not specified the message is sent immediately
 	 */
 	public void setDeferred(Date deferred) 
 	{

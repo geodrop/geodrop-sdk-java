@@ -17,7 +17,8 @@ public class Port
      */
     private String drop;
     /**
-     * An unique name you can assign to port, suitable as keyword in alternative to port number (id)
+     * An unique name you can assign to port, 
+     * suitable as keyword in alternative to port number (id)
      */
     private String alias;
     /**
@@ -48,7 +49,6 @@ public class Port
    	 * Each of MNO item indicates MNO settings for which the payment port is enabled
    	 */
   	private Vector<Mno> mnoList;
-
 	/**
 	 * Max amount of money the customer can be charged within the "period"
 	 */
@@ -63,6 +63,8 @@ public class Port
 	 */
 	private Vector<Listener> listenerList;
 	  
+	Port() {}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -84,7 +86,7 @@ public class Port
 	}
 
 	/**
-	 * @return The drop
+	 * @return The drop that specifies the port type (pay or premium)
 	 */
 	public String getDrop() 
 	{
@@ -92,7 +94,8 @@ public class Port
 	}
 
 	/**
-	 * @return The alias
+	 * @return An unique name you can assign to port, 
+	 * suitable as keyword in alternative to port number (id)
 	 */
 	public String getAlias() 
 	{
@@ -100,7 +103,7 @@ public class Port
 	}
 
 	/**
-	 * @return The priceTag
+	 * @return Identifier of price valid for this port
 	 */
 	public String getPriceTag() 
 	{
@@ -108,7 +111,7 @@ public class Port
 	}
 
 	/**
-	 * @return The priceValue
+	 * @return Price value corresponding to the tag
 	 */
 	public float getPriceValue() 
 	{
@@ -116,7 +119,7 @@ public class Port
 	}
 
 	/**
-	 * @return The type
+	 * @return Type of port that can be ONDEMAND or SUBSCRIPTION
 	 */
 	public String getType() 
 	{
@@ -124,7 +127,7 @@ public class Port
 	}
 
 	/**
-	 * @return The openSince
+	 * @return Date and time since when port results active
 	 */
 	public Date getOpenSince() 
 	{
@@ -132,7 +135,7 @@ public class Port
 	}
 
 	/**
-	 * @return The openUntil
+	 * @return Date and time when port will be disabled
 	 */
 	public Date getOpenUntil() 
 	{
@@ -140,7 +143,8 @@ public class Port
 	}
 
 	/**
-	 * @return The openState
+	 * @return State of port, 
+	 * can be ACTIVE or SUSPENDED if any compliance issues have been raised
 	 */
 	public String getOpenState() 
 	{
@@ -148,7 +152,8 @@ public class Port
 	}
 
 	/**
-	 * @return The mnoList
+	 * @return The mnoList, each of MNO item indicates MNO settings for which 
+	 * the payment port is enabled
 	 */
 	public Vector<Mno> getMnoList() 
 	{
@@ -156,7 +161,7 @@ public class Port
 	}
 
 	/**
-	 * @return The subscriptionMax
+	 * @return Max amount of money the customer can be charged within the "period"
 	 */
 	public float getSubscriptionMax() 
 	{
@@ -164,7 +169,8 @@ public class Port
 	}
 
 	/**
-	 * @return The subscriptionPeriod
+	 * @return Time window that limit the "max" amount of money the customer 
+	 * can be charged in days
 	 */
 	public int getSubscriptionPeriod() 
 	{
@@ -172,15 +178,17 @@ public class Port
 	}
 
 	/**
-	 * @return The listenerList
+	 * @return Settings that content provider can modify during the lifetime of the service,
+	 * regarding event notification receiving
 	 */
 	public Vector<Listener> getListenerList() 
 	{
 		return this.listenerList;
 	}
 
+	//setters
 	/**
-	 * @param drop The drop to set
+	 * @param drop The drop that specifies the port type (pay or premium)
 	 */
 	public void setDrop(String drop) 
 	{
@@ -188,7 +196,8 @@ public class Port
 	}
 
 	/**
-	 * @param alias The alias to set
+	 * @param alias An unique name you can assign to port, 
+	 * suitable as keyword in alternative to port number (id)
 	 */
 	public void setAlias(String alias) 
 	{
@@ -196,7 +205,7 @@ public class Port
 	}
 
 	/**
-	 * @param priceTag The priceTag to set
+	 * @param priceTag Identifier of price valid for this port
 	 */
 	public void setPriceTag(String priceTag) 
 	{
@@ -204,7 +213,7 @@ public class Port
 	}
 
 	/**
-	 * @param priceValue The priceValue to set
+	 * @param priceValue Price value corresponding to the tag
 	 */
 	public void setPriceValue(float priceValue) 
 	{
@@ -212,7 +221,7 @@ public class Port
 	}
 
 	/**
-	 * @param type The type to set
+	 * @param type Type of port that can be ONDEMAND or SUBSCRIPTION
 	 */
 	public void setType(String type) 
 	{
@@ -220,7 +229,7 @@ public class Port
 	}
 
 	/**
-	 * @param openSince The openSince to set
+	 * @param openSince Date and time since when port results active
 	 */
 	public void setOpenSince(Date openSince) 
 	{
@@ -228,7 +237,7 @@ public class Port
 	}
 
 	/**
-	 * @param openUntil The openUntil to set
+	 * @param openUntil Date and time when port will be disabled
 	 */
 	public void setOpenUntil(Date openUntil) 
 	{
@@ -236,7 +245,8 @@ public class Port
 	}
 
 	/**
-	 * @param openState The openState to set
+	 * @param openState State of port, 
+	 * can be ACTIVE or SUSPENDED if any compliance issues have been raised
 	 */
 	public void setOpenState(String openState) 
 	{
@@ -244,7 +254,8 @@ public class Port
 	}
 
 	/**
-	 * @param mnoList The mnoList to set
+	 * @param mnoList The mnoList, each of MNO item indicates MNO settings for which 
+	 * the payment port is enabled
 	 */
 	public void setMnoList(Vector<Mno> mnoList) 
 	{
@@ -252,7 +263,7 @@ public class Port
 	}
 
 	/**
-	 * @param subscriptionMax The subscriptionMax to set
+	 * @param subscriptionMax Max amount of money the customer can be charged within the "period"
 	 */
 	public void setSubscriptionMax(float subscriptionMax) 
 	{
@@ -260,7 +271,8 @@ public class Port
 	}
 
 	/**
-	 * @param subscriptionPeriod The subscriptionPeriod to set
+	 * @param subscriptionPeriod Time window that limit the "max" amount of money the customer 
+	 * can be charged in days
 	 */
 	public void setSubscriptionPeriod(int subscriptionPeriod) 
 	{
@@ -268,7 +280,8 @@ public class Port
 	}
 
 	/**
-	 * @param listenerList The listenerList to set
+	 * @param listenerList Settings that content provider can modify during the lifetime of the service,
+	 * regarding event notification receiving
 	 */
 	public void setListenerList(Vector<Listener> listenerList) 
 	{

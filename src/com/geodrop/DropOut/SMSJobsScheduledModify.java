@@ -9,7 +9,6 @@ import com.geodrop.ContentType;
 import com.geodrop.ErrorType;
 import com.geodrop.GeodropRequest;
 import com.geodrop.HttpMethod;
-import com.geodrop.MustacheTemplate;
 import com.geodrop.Uri;
 
 /**
@@ -140,14 +139,14 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	}
 	
 	@Override
-	public boolean decodeResponse(String httpResponse) 
+	protected boolean decodeResponse(String httpResponse) 
 	{
 		this.response = new SMSJobsScheduled_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 
 	@Override
-	public void createParams() 
+	protected void createParams() 
 	{
 		this.params = new HashMap<String, Object>();
 		this.params.put("job_id", this.jobId);
@@ -166,7 +165,7 @@ public class SMSJobsScheduledModify extends GeodropRequest
 
 	//getters
 	/**
-	 * @return The job ID
+	 * @return The job id of the job to modify
 	 */
 	public String getJobId() 
 	{
@@ -174,7 +173,7 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	}
 
 	/**
-	 * @return The message text
+	 * @return Text of the message
 	 */
 	public String getMessageText() 
 	{
@@ -182,7 +181,8 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	}
 
 	/**
-	 * @return The msisdns to delete
+	 * @return The vector of msisdns to delete; 
+	 * each msisdn is in E.164 format with '+'
 	 */
 	public Vector<String> getMsisdnToDelete() 
 	{
@@ -190,7 +190,8 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	}
 
 	/**
-	 * @return The msisdns to add
+	 * @return The vector of msisdns to add; 
+	 * each msisdn is in E.164 format with '+'
 	 */
 	public Vector<String> getMsisdnToAdd() 
 	{
@@ -198,7 +199,7 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	}
 
 	/**
-	 * @return The tpoa
+	 * @return Used to specify the personalized sender
 	 */
 	public String getTpoa() 
 	{
@@ -206,7 +207,9 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	}
 
 	/**
-	 * @return The deferred time
+	 * @return Date and time in the format "Y-m-d H:i:s",
+	 * used to send the message to a certain date,
+	 * if not specified the message is sent immediately
 	 */
 	public Date getDeferredTime() 
 	{
@@ -215,7 +218,7 @@ public class SMSJobsScheduledModify extends GeodropRequest
 
 	//setters
 	/**
-	 * @param jobId The job ID
+	 * @param jobId The job id of the job to modify
 	 */
 	public void setJobId(String jobId) 
 	{
@@ -223,7 +226,7 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	}
 
 	/**
-	 * @param messageText The message text
+	 * @param messageText Text of the message
 	 */
 	public void setMessageText(String messageText) 
 	{
@@ -231,7 +234,8 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	}
 
 	/**
-	 * @param msisdnToDelete The msisdns to delete
+	 * @param msisdnToDelete The vector of msisdns to delete; 
+	 * each msisdn is in E.164 format with '+'
 	 */
 	public void setMsisdnToDelete(Vector<String> msisdnToDelete) 
 	{
@@ -239,7 +243,8 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	}
 
 	/**
-	 * @param msisdnToAdd The msisdns to add
+	 * @param msisdnToAdd The vector of msisdns to add; 
+	 * each msisdn is in E.164 format with '+'
 	 */
 	public void setMsisdnToAdd(Vector<String> msisdnToAdd) 
 	{
@@ -247,7 +252,7 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	}
 
 	/**
-	 * @param tpoa The tpoa
+	 * @param tpoa Used to specify the personalized sender
 	 */
 	public void setTpoa(String tpoa) 
 	{
@@ -255,7 +260,9 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	}
 
 	/**
-	 * @param deferredTime The deferred time
+	 * @param deferredTime Date and time in the format "Y-m-d H:i:s",
+	 * used to send the message to a certain date,
+	 * if not specified the message is sent immediately
 	 */
 	public void setDeferredTime(Date deferredTime) 
 	{

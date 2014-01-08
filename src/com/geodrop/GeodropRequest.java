@@ -43,12 +43,12 @@ public abstract class GeodropRequest
 	   * @param httpResponse Response to the http request
 	   * @return <CODE>true</CODE> on success, <CODE>false</CODE> otherwise
 	   */
-	  abstract public boolean decodeResponse(String httpResponse);
+	  abstract protected boolean decodeResponse(String httpResponse);
 	  
 	  /**
 	   * Creates the parameters for the http request
 	   */
-	  abstract public void createParams();
+	  abstract protected void createParams();
 	    
 	  /**
 	   * Checks if the format of the msisdn is E.164;
@@ -114,7 +114,7 @@ public abstract class GeodropRequest
 	   * @param limit Limit to check
 	   * @return <CODE>true</CODE> on success, <CODE>false</CODE> otherwise
 	   */
-	  public final boolean checkLimitFormat(String limit)
+	  protected final boolean checkLimitFormat(String limit)
 	  {
 		  //int,int
 		  String[] limitSplitted = limit.split(",");
@@ -163,7 +163,7 @@ public abstract class GeodropRequest
 	  }
 
 	  /**
-	   * @return The response
+	   * @return The <CODE>GeodropResponse</CODE> to the request
 	   */
 	  public GeodropResponse getResponse() 
 	  {
@@ -171,7 +171,7 @@ public abstract class GeodropRequest
 	  }
 	  
 	  /**
-	   * @return The template name
+	   * @return The Mustache template name
 	   */
 	  public String getTemplateName() 
 	  {

@@ -48,7 +48,7 @@ public class StatusAdhocDest
 		return this.msisdn;
 	}
 	/**
-	 * @return The msisdn
+	 * @return The order ID
 	 */
 	public String getOrderid() 
 	{

@@ -7,18 +7,20 @@ package com.geodrop.DropOut;
  * @since 1.0
  *
  */
-public final class StatusRequestType 
+final class StatusRequestType 
 {
 	/**
 	 * Used to retrieve the status of all SMS messages sent in a given time interval
 	 */
-	public static final String RANGE           = "range";
+	static final String RANGE           = "range";
 	/**
 	 * Used to retrieve the overall status of a job
 	 */
-	public static final String JOB	           = "job";
+	static final String JOB	           = "job";
 	/**
 	 * Used to retrieve the status of any set of SMS messages
 	 */
-	public static final String ADHOC           = "adhoc";
+	static final String ADHOC           = "adhoc";
+	
+	StatusRequestType(){}
 }

@@ -34,6 +34,8 @@ public class PortTrigger_Response extends GeodropResponse
 	 */
 	private String description;
 	
+	PortTrigger_Response(){}
+	
 	@Override
 	public String toString() 
 	{
@@ -76,7 +78,7 @@ public class PortTrigger_Response extends GeodropResponse
 
 	//getters
 	/**
-	 * @return The id
+	 * @return The id to be used to match with notification of listeners
 	 */
 	public String getId()
 	{
@@ -84,7 +86,7 @@ public class PortTrigger_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The code
+	 * @return Error code
 	 */
 	public int getCode()
 	{
@@ -92,7 +94,7 @@ public class PortTrigger_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The description
+	 * @return Verbose description of the error
 	 */
 	public String getDescription() 
 	{

@@ -95,14 +95,14 @@ public class CustomerGoodbye extends GeodropRequest
 		this.custom = custom;
 	}
 	@Override
-	public boolean decodeResponse(String httpResponse) 
+	protected boolean decodeResponse(String httpResponse) 
 	{
-		this.response = new CustomerWelcomeGoodbay_Response();
+		this.response = new CustomerWelcomeGoodbye_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 
 	@Override
-	public void createParams() 
+	protected void createParams() 
 	{
 		this.params = new HashMap<String, Object>();
 		this.params.put("port", this.port);
@@ -114,7 +114,7 @@ public class CustomerGoodbye extends GeodropRequest
 
 	//getters
 	/**
-	 * @return The port number
+	 * @return DropPay port id
 	 */
 	public int getPort() 
 	{
@@ -122,7 +122,7 @@ public class CustomerGoodbye extends GeodropRequest
 	}
 
 	/**
-	 * @return The msisdn
+	 * @return Customer phone number in E.164 format (without +)
 	 */
 	public String getMsisdn() 
 	{
@@ -130,7 +130,7 @@ public class CustomerGoodbye extends GeodropRequest
 	}
 
 	/**
-	 * @return The custom ID
+	 * @return Unique CP request id
 	 */
 	public String getCustom() 
 	{
@@ -138,7 +138,7 @@ public class CustomerGoodbye extends GeodropRequest
 	}
 
 	/**
-	 * @return The message text
+	 * @return Text to send, encoded in UTF-8, up to 160 characters
 	 */
 	public String getText() 
 	{
@@ -146,7 +146,7 @@ public class CustomerGoodbye extends GeodropRequest
 	}
 
 	/**
-	 * @return The subscriber
+	 * @return Subscriber id required in subscription payments
 	 */
 	public int getSubscriber() 
 	{
@@ -155,7 +155,7 @@ public class CustomerGoodbye extends GeodropRequest
 
 	//setters
 	/**
-	 * @param port The port number
+	 * @param port DropPay port id
 	 */
 	public void setPort(int port) 
 	{
@@ -163,7 +163,7 @@ public class CustomerGoodbye extends GeodropRequest
 	}
 
 	/**
-	 * @param msisdn The msisdn
+	 * @param msisdn Customer phone number in E.164 format (without +)
 	 */
 	public void setMsisdn(String msisdn) 
 	{
@@ -171,7 +171,7 @@ public class CustomerGoodbye extends GeodropRequest
 	}
 
 	/**
-	 * @param custom The custom ID
+	 * @param custom Unique CP request id
 	 */
 	public void setCustom(String custom) 
 	{
@@ -179,7 +179,7 @@ public class CustomerGoodbye extends GeodropRequest
 	}
 
 	/**
-	 * @param text The message text
+	 * @param text Text to send, encoded in UTF-8, up to 160 characters
 	 */
 	public void setText(String text) 
 	{
@@ -187,7 +187,7 @@ public class CustomerGoodbye extends GeodropRequest
 	}
 
 	/**
-	 * @param subscriber The subscriber
+	 * @param subscriber Subscriber id required in subscription payments
 	 */
 	public void setSubscriber(int subscriber) 
 	{

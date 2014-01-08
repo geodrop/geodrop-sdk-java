@@ -39,6 +39,7 @@ public class PortDescriptor_Response extends GeodropResponse
 		return "PortDescriptor_Response [ports=" + this.ports + "]";
 	}
 
+	PortDescriptor_Response(){}
 	@Override
 	public boolean fillParameters(String httpResponse) 
 	{
@@ -145,7 +146,7 @@ public class PortDescriptor_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The ports
+	 * @return Array of ports
 	 */
 	public HashMap<Integer, Port> getPorts()
 	{

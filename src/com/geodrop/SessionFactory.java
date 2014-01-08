@@ -17,6 +17,9 @@ import java.net.URLEncoder;
  */
 public class SessionFactory 
 {
+	private SessionFactory()
+	{}
+	
 	/**
 	 * Creates a <CODE>GeodropSession</CODE>
 	 * with the method of Resource Owner Password Credentials

@@ -30,6 +30,8 @@ public final class ErrorType
 	public static final String INVALID_HTTP_RESPONSE     = "Error: invalid http response!\n";
 	public static final String RESPONSE_NOT_XML          = "Error: response not be parsed as XML!\n";
 	
+	ErrorType(){}
+	
 	/**
      * Returns the verbose description of a DropPay error code
      *

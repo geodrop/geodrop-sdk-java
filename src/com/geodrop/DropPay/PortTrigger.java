@@ -120,14 +120,14 @@ public class PortTrigger extends GeodropRequest
 	}
 	  
 	@Override
-	public boolean decodeResponse(String httpResponse) 
+	protected boolean decodeResponse(String httpResponse) 
 	{
 		this.response = new PortTrigger_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 
 	@Override
-	public void createParams() 
+	protected void createParams() 
 	{
 		this.params = new HashMap<String, Object>();
 		this.params.put("port", this.port);
@@ -143,7 +143,7 @@ public class PortTrigger extends GeodropRequest
 
 	//getters
 	/**
-	 * @return The port number
+	 * @return DropPay port id
 	 */
 	public int getPort() 
 	{
@@ -151,7 +151,7 @@ public class PortTrigger extends GeodropRequest
 	}
 
 	/**
-	 * @return The msisdn
+	 * @return Customer phone number in E.164 format (without +)
 	 */
 	public String getMsisdn() 
 	{
@@ -159,7 +159,7 @@ public class PortTrigger extends GeodropRequest
 	}
 
 	/**
-	 * @return The custom ID
+	 * @return Unique CP request id
 	 */
 	public String getCustom() 
 	{
@@ -167,7 +167,7 @@ public class PortTrigger extends GeodropRequest
 	}
 
 	/**
-	 * @return The message text
+	 * @return Text to send, encoded in UTF-8, up to 160 characters
 	 */
 	public String getText() 
 	{
@@ -175,7 +175,7 @@ public class PortTrigger extends GeodropRequest
 	}
 
 	/**
-	 * @return The deferred time
+	 * @return Time to schedule trigger, default is now
 	 */
 	public Date getTime() 
 	{
@@ -184,7 +184,7 @@ public class PortTrigger extends GeodropRequest
 
 	//setters
 	/**
-	 * @param port The port number
+	 * @param port DropPay port id
 	 */
 	public void setPort(int port) 
 	{
@@ -192,7 +192,7 @@ public class PortTrigger extends GeodropRequest
 	}
 
 	/**
-	 * @param msisdn The msisdn
+	 * @param msisdn Customer phone number in E.164 format (without +)
 	 */
 	public void setMsisdn(String msisdn) 
 	{
@@ -200,7 +200,7 @@ public class PortTrigger extends GeodropRequest
 	}
 
 	/**
-	 * @param custom The custom ID
+	 * @param custom Unique CP request id
 	 */
 	public void setCustom(String custom) 
 	{
@@ -208,7 +208,7 @@ public class PortTrigger extends GeodropRequest
 	}
 
 	/**
-	 * @param text The message text
+	 * @param text Text to send, encoded in UTF-8, up to 160 characters
 	 */
 	public void setText(String text) 
 	{
@@ -216,7 +216,7 @@ public class PortTrigger extends GeodropRequest
 	}
 
 	/**
-	 * @param time The deferred time
+	 * @param time Time to schedule trigger, default is now
 	 */
 	public void setTime(Date time) 
 	{

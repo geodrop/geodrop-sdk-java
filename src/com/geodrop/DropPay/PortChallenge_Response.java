@@ -46,6 +46,12 @@ public class PortChallenge_Response extends GeodropResponse
 	 */
 	private int order;
 	  
+	
+	/**
+	 * 
+	 */
+	PortChallenge_Response(){}
+
 	@Override
 	public boolean fillParameters(String httpResponse) 
 	{
@@ -95,7 +101,7 @@ public class PortChallenge_Response extends GeodropResponse
 
 	//getters
 	/**
-	 * @return The msisdn
+	 * @return Customer phone number in E.164 format (without +)
 	 */
 	public String getMsisdn() 
 	{
@@ -103,7 +109,7 @@ public class PortChallenge_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The port
+	 * @return DropPay port id
 	 */
 	public int getPort() 
 	{
@@ -111,7 +117,7 @@ public class PortChallenge_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The custom
+	 * @return Unique CP request id
 	 */
 	public String getCustom() 
 	{
@@ -119,7 +125,7 @@ public class PortChallenge_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The code
+	 * @return Error code
 	 */
 	public int getCode() 
 	{
@@ -127,7 +133,7 @@ public class PortChallenge_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The description
+	 * @return Verbose description of the error
 	 */
 	public String getDescription() 
 	{
@@ -135,7 +141,7 @@ public class PortChallenge_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The order
+	 * @return Order id appended by Geodrop
 	 */
 	public int getOrder() 
 	{

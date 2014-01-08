@@ -44,6 +44,7 @@ public class SMSSend_Response extends GeodropResponse
 	 */
 	private Vector<Report> reportList;
 	  
+	SMSSend_Response() {}
 	@Override
 	public boolean fillParameters(String httpResponse) 
 	{
@@ -101,7 +102,8 @@ public class SMSSend_Response extends GeodropResponse
 
 	//getters
 	/**
-	 * @return The code
+	 * @return Code that indicates the result of the request, 
+	 * it is set to 0 on success
 	 */
 	public int getCode() 
 	{
@@ -109,7 +111,7 @@ public class SMSSend_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The description
+	 * @return Description of error
 	 */
 	public String getDescription() 
 	{
@@ -117,7 +119,7 @@ public class SMSSend_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The report requested
+	 * @return Total of the requested recipients
 	 */
 	public int getReportRequested() 
 	{
@@ -125,7 +127,7 @@ public class SMSSend_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The report posted
+	 * @return Total of the effectively sent SMS messages
 	 */
 	public int getReportPosted() 
 	{
@@ -133,7 +135,8 @@ public class SMSSend_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The report list
+	 * @return A vector that contains a <CODE>Report</CODE> 
+	 * for each recipient's mobile phone number
 	 */
 	public Vector<Report> getReportList() 
 	{

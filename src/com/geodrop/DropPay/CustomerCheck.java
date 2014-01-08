@@ -62,14 +62,14 @@ public class CustomerCheck extends GeodropRequest
 	}
 	
 	@Override
-	public boolean decodeResponse(String httpResponse) 
+	protected boolean decodeResponse(String httpResponse) 
 	{
 		this.response = new CustomerCheck_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 
 	@Override
-	public void createParams() 
+	protected void createParams() 
 	{
 		this.params = new HashMap<String, Object>();
 		this.params.put("port", this.port);
@@ -78,7 +78,7 @@ public class CustomerCheck extends GeodropRequest
 
 	//getters
 	/**
-	 * @return The port number
+	 * @return DropPay port id
 	 */
 	public int getPort() 
 	{
@@ -86,7 +86,7 @@ public class CustomerCheck extends GeodropRequest
 	}
 
 	/**
-	 * @return The msisdn
+	 * @return Customer phone number in E.164 format (without +)
 	 */
 	public String getMsisdn() 
 	{
@@ -95,7 +95,7 @@ public class CustomerCheck extends GeodropRequest
 
 	//setters
 	/**
-	 * @param port The port number
+	 * @param port DropPay port id
 	 */
 	public void setPort(int port) 
 	{
@@ -103,7 +103,7 @@ public class CustomerCheck extends GeodropRequest
 	}
 
 	/**
-	 * @param msisdn The msisdn
+	 * @param msisdn Customer phone number in E.164 format (without +)
 	 */
 	public void setMsisdn(String msisdn) 
 	{

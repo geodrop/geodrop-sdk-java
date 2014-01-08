@@ -21,4 +21,6 @@ public final class ContentType
      * Used when the content is RAW
      */
 	public static final String RAW = "application/x-www-form-urlencoded";
+	
+	ContentType(){}
 }

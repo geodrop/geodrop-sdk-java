@@ -6,7 +6,6 @@ import com.geodrop.ContentType;
 import com.geodrop.ErrorType;
 import com.geodrop.GeodropRequest;
 import com.geodrop.HttpMethod;
-import com.geodrop.MustacheTemplate;
 import com.geodrop.Uri;
 
 /**
@@ -101,13 +100,13 @@ public class SMSStatusJob extends GeodropRequest
 	}
 	
 	@Override
-	public boolean decodeResponse(String httpResponse) 
+	protected boolean decodeResponse(String httpResponse) 
 	{
 		this.response = new SMSStatus_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 	@Override
-	public void createParams() 
+	protected void createParams() 
 	{
 		this.params = new HashMap<String, Object>();
 		this.params.put("client_id", this.clientId);
@@ -120,32 +119,56 @@ public class SMSStatusJob extends GeodropRequest
 	}
 
 	//getters
+	/**
+	 * @return The Global Unique IDentifier (GUID) of the job
+	 */
 	public String getJobOrderid() 
 	{
 		return this.jobOrderid;
 	}
 
+	/**
+	 * @return The job limit, used to paginate the result,
+	 * it consist of two integers separated by a comma,
+	 * the first one indicates the position of the first required result
+	 * and the second the total number of result to return
+	 */
 	public String getJobLimit() 
 	{
 		return this.jobLimit;
 	}
 
+	/**
+	 * @return The client id
+	 */
 	public String getClientId()
 	{
 		return this.clientId;
 	}
 
 	//setters
+	/**
+	 * @param jobOrderid The Global Unique IDentifier (GUID) of the job
+	 */
 	public void setJobOrderid(String jobOrderid) 
 	{
 		this.jobOrderid = jobOrderid;
 	}
 
+	/**
+	 * @param jobLimit The job limit, used to paginate the result,
+	 * it consist of two integers separated by a comma,
+	 * the first one indicates the position of the first required result
+	 * and the second the total number of result to return
+	 */
 	public void setJobLimit(String jobLimit) 
 	{
 		this.jobLimit = jobLimit;
 	}
 
+	/**
+	 * @param clientId The client id
+	 */
 	public void setClientId(String clientId) 
 	{
 		this.clientId = clientId;

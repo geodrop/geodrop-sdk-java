@@ -24,4 +24,6 @@ public final class Uri
 	public static final String PAY_PORT_CHARGE         = "https://api.geodrop.net/pay/1/port/charge/1/";
 	public static final String PAY_PORT_DESCRIPTOR     = "https://api.geodrop.net/pay/1/port/descriptor/1/";
 	public static final String PAY_PORT_TRIGGER        = "https://api.geodrop.net/pay/1/port/trigger/1/";
+	
+	Uri(){}
 }

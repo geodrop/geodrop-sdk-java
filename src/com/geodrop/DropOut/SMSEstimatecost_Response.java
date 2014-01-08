@@ -32,6 +32,13 @@ public class SMSEstimatecost_Response extends GeodropResponse
 		return "estimate cost: " + this.estimateCost;
 	}
 
+	
+	/**
+	 * 
+	 */
+	SMSEstimatecost_Response() {}
+
+
 	@Override
 	public boolean fillParameters(String httpResponse) 
 	{
@@ -60,7 +67,7 @@ public class SMSEstimatecost_Response extends GeodropResponse
 
 	//getters
 	/**
-	 * @return The estimate cost
+	 * @return Estimate of the final cost of the message
 	 */
 	public int getEstimateCost() 
 	{

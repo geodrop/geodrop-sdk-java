@@ -41,6 +41,7 @@ public class SMSStatus_Response extends GeodropResponse
 	 */
 	private Vector<Report> reportList;
 	
+	SMSStatus_Response() {}
 	@Override
 	public String toString() 
 	{
@@ -84,7 +85,7 @@ public class SMSStatus_Response extends GeodropResponse
 
 	//getters
 	/**
-	 * @return The client ID
+	 * @return The client id
 	 */
 	public String getClientId() 
 	{
@@ -92,7 +93,7 @@ public class SMSStatus_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The report requested
+	 * @return The total of the requested recipients 
 	 */
 	public int getReportRequested() 
 	{
@@ -100,7 +101,7 @@ public class SMSStatus_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The report posted
+	 * @return Number of effectively sent SMS messages
 	 */
 	public int getReportPosted() 
 	{
@@ -108,7 +109,8 @@ public class SMSStatus_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The report list
+	 * @return A vector that Contains a <CODE>Report</CODE> 
+	 * for each recipient's mobile phone number
 	 */
 	public Vector<Report> getReportList() 
 	{

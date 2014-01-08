@@ -7,19 +7,21 @@ package com.geodrop.DropOut;
  * @since 1.0
  *
  */
-public final class JobsScheduledAction 
+final class JobsScheduledAction 
 {
 	/**
 	 * To get the job status, its description (text and recipient's list)
 	 * and the date and time planned for sending
 	 */
-	public static final String STATUS = "STATUS";
+	static final String STATUS = "STATUS";
 	/**
 	 * To modify the text, the recipient's list and the planned date and time
 	 */
-	public static final String MODIFY = "MODIFY";
+	static final String MODIFY = "MODIFY";
 	/**
 	 * To delete the job (the message will not be sent anymore)
 	 */
-	public static final String DELETE = "DELETE";
+	static final String DELETE = "DELETE";
+	
+	JobsScheduledAction(){}
 }

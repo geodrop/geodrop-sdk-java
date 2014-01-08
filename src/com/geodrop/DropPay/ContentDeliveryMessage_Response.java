@@ -34,6 +34,7 @@ public class ContentDeliveryMessage_Response extends GeodropResponse
 	 */
     private String description;
 	  
+    ContentDeliveryMessage_Response() {}
 	@Override
 	public String toString()
 	{
@@ -72,7 +73,7 @@ public class ContentDeliveryMessage_Response extends GeodropResponse
 
 	//getters
 	/**
-	 * @return The ID
+	 * @return ID to be used to match with notification of listeners
 	 */
 	public String getId() 
 	{
@@ -80,7 +81,7 @@ public class ContentDeliveryMessage_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The code
+	 * @return Error code
 	 */
 	public int getCode()
 	{
@@ -88,7 +89,7 @@ public class ContentDeliveryMessage_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The description
+	 * @return Verbose description of the error
 	 */
 	public String getDescription() 
 	{

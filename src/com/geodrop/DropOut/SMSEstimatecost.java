@@ -7,7 +7,6 @@ import com.geodrop.ContentType;
 import com.geodrop.ErrorType;
 import com.geodrop.GeodropRequest;
 import com.geodrop.HttpMethod;
-import com.geodrop.MustacheTemplate;
 import com.geodrop.Uri;
 
 /**
@@ -19,6 +18,10 @@ import com.geodrop.Uri;
  */
 public class SMSEstimatecost extends GeodropRequest
 {
+	/**
+	 * Contains msisdns of the recipients;
+	 * each msisdn is in E.164 format with '+'
+	 */
     private Vector<String> destMsisdns;
     /**
      * The text of the message to send
@@ -64,14 +67,14 @@ public class SMSEstimatecost extends GeodropRequest
 	}
 	
 	@Override
-	public boolean decodeResponse(String httpResponse) 
+	protected boolean decodeResponse(String httpResponse) 
 	{
 		this.response = new SMSEstimatecost_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 
 	@Override
-	public void createParams()
+	protected void createParams()
 	{
 		this.params = new HashMap<String, Object>();
 		this.params.put("message", this.messageText);
@@ -80,7 +83,8 @@ public class SMSEstimatecost extends GeodropRequest
 
 	//getters
 	/**
-	 * @return The msisdns of the recipient
+	 * @return A vector that contains msisdns of the recipients;
+	 * each msisdn is in E.164 format with '+'
 	 */
 	public Vector<String> getDestMsisdns() 
 	{
@@ -88,7 +92,7 @@ public class SMSEstimatecost extends GeodropRequest
 	}
 
 	/**
-	 * @return The text of the message
+	 * @return The text of the message to send
 	 */
 	public String getMessageText()
 	{
@@ -97,7 +101,8 @@ public class SMSEstimatecost extends GeodropRequest
 
 	//setters
 	/**
-	 * @param destMsisdns Msisdns of the recipient
+	 * @param destMsisdns A vector that contains msisdns of the recipients;
+	 * each msisdn is in E.164 format with '+'
 	 */
 	public void setDestMsisdns(Vector<String> destMsisdns) 
 	{
@@ -105,7 +110,7 @@ public class SMSEstimatecost extends GeodropRequest
 	}
 
 	/**
-	 * @param messageText Text of the message
+	 * @param messageText The text of the message to send
 	 */
 	public void setMessageText(String messageText) 
 	{

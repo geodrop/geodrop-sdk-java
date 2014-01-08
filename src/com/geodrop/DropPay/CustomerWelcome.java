@@ -120,14 +120,14 @@ public class CustomerWelcome extends GeodropRequest
 	}
 	
 	@Override
-	public boolean decodeResponse(String httpResponse) 
+	protected boolean decodeResponse(String httpResponse) 
 	{
-		this.response = new CustomerWelcomeGoodbay_Response();
+		this.response = new CustomerWelcomeGoodbye_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 
 	@Override
-	public void createParams() 
+	protected void createParams() 
 	{
 		this.params = new HashMap<String, Object>();
 		this.params.put("port", this.port);
@@ -140,7 +140,7 @@ public class CustomerWelcome extends GeodropRequest
 
 	//getters
 	/**
-	 * @return The port number
+	 * @return DropPay port number
 	 */
 	public int getPort() 
 	{
@@ -148,7 +148,7 @@ public class CustomerWelcome extends GeodropRequest
 	}
 
 	/**
-	 * @return The msisdn
+	 * @return Customer phone number in E.164 format (without +)
 	 */
 	public String getMsisdn() 
 	{
@@ -156,7 +156,7 @@ public class CustomerWelcome extends GeodropRequest
 	}
 
 	/**
-	 * @return The custom ID
+	 * @return Unique CP request ID
 	 */
 	public String getCustom() 
 	{
@@ -164,7 +164,7 @@ public class CustomerWelcome extends GeodropRequest
 	}
 
 	/**
-	 * @return The message text
+	 * @return Text to send, encoded in UTF-8, up to 160 characters
 	 */
 	public String getText() 
 	{
@@ -172,7 +172,9 @@ public class CustomerWelcome extends GeodropRequest
 	}
 
 	/**
-	 * @return The pin
+	 * @return Pin code sent to customer in challenge action,
+	 * it is mandatory if transaction was initiated by provider calling challenge,
+	 * it is not mandatory if transaction was initiated by customer sending MO
 	 */
 	public String getPin() 
 	{
@@ -180,7 +182,7 @@ public class CustomerWelcome extends GeodropRequest
 	}
 
 	/**
-	 * @return The order ID
+	 * @return Order id appended by Geodrop
 	 */
 	public int getOrder() 
 	{
@@ -189,7 +191,7 @@ public class CustomerWelcome extends GeodropRequest
 
 	//setters
 	/**
-	 * @param port The port number
+	 * @param port DropPay port number
 	 */
 	public void setPort(int port) 
 	{
@@ -197,7 +199,7 @@ public class CustomerWelcome extends GeodropRequest
 	}
 
 	/**
-	 * @param msisdn The msisdn
+	 * @param msisdn Customer phone number in E.164 format (without +)
 	 */
 	public void setMsisdn(String msisdn) 
 	{
@@ -205,7 +207,7 @@ public class CustomerWelcome extends GeodropRequest
 	}
 
 	/**
-	 * @param custom The custom ID
+	 * @param custom Unique CP request ID
 	 */
 	public void setCustom(String custom) 
 	{
@@ -213,7 +215,7 @@ public class CustomerWelcome extends GeodropRequest
 	}
 
 	/**
-	 * @param text The message text
+	 * @param text Text to send, encoded in UTF-8, up to 160 characters
 	 */
 	public void setText(String text) 
 	{
@@ -221,7 +223,9 @@ public class CustomerWelcome extends GeodropRequest
 	}
 
 	/**
-	 * @param pin The pin
+	 * @param pin Pin code sent to customer in challenge action,
+	 * it is mandatory if transaction was initiated by provider calling challenge,
+	 * it is not mandatory if transaction was initiated by customer sending MO
 	 */
 	public void setPin(String pin) 
 	{
@@ -229,7 +233,7 @@ public class CustomerWelcome extends GeodropRequest
 	}
 
 	/**
-	 * @param order The order ID
+	 * @param order Order id appended by Geodrop
 	 */
 	public void setOrder(int order) 
 	{

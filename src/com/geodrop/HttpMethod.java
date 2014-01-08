@@ -25,4 +25,6 @@ public final class HttpMethod
     * Used when the request is DELETE
     */
 	public static final String DELETE = "DELETE";
+	
+	HttpMethod(){}
 }

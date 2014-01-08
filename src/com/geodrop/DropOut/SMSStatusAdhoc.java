@@ -7,7 +7,6 @@ import com.geodrop.ContentType;
 import com.geodrop.ErrorType;
 import com.geodrop.GeodropRequest;
 import com.geodrop.HttpMethod;
-import com.geodrop.MustacheTemplate;
 import com.geodrop.Uri;
 
 /**
@@ -86,14 +85,14 @@ public class SMSStatusAdhoc extends GeodropRequest
 	}
 	
 	@Override
-	public boolean decodeResponse(String httpResponse)
+	protected boolean decodeResponse(String httpResponse)
 	{
 		this.response = new SMSStatus_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 
 	@Override
-	public void createParams()
+	protected void createParams()
 	{
 		this.params = new HashMap<String, Object>();
 		this.params.put("client_id", this.clientId);
@@ -112,7 +111,9 @@ public class SMSStatusAdhoc extends GeodropRequest
 
 	//getters
 	/**
-	 * @return The vector of <CODE>StatusAdhocDest</CODE>
+	 * @return The vector of <CODE>StatusAdhocDest</CODE>,
+	 * each <CODE>StatusAdhocDest</CODE>
+	 * uniquely identifies a single SMS message in the Geodrop archive
 	 */
 	public Vector<StatusAdhocDest> getDest() 
 	{
@@ -120,7 +121,7 @@ public class SMSStatusAdhoc extends GeodropRequest
 	}
 
 	/**
-	 * @return The client ID
+	 * @return The client id
 	 */
 	public String getClientId()
 	{
@@ -129,7 +130,9 @@ public class SMSStatusAdhoc extends GeodropRequest
 
 	//setters
 	/**
-	 * @param dest The vector of <CODE>StatusAdhocDest</CODE>
+	 * @param dest The vector of <CODE>StatusAdhocDest</CODE>,
+	 * each <CODE>StatusAdhocDest</CODE>
+	 * uniquely identifies a single SMS message in the Geodrop archive
 	 */
 	public void setDest(Vector<StatusAdhocDest> dest) 
 	{
@@ -137,7 +140,7 @@ public class SMSStatusAdhoc extends GeodropRequest
 	}
 
 	/**
-	 * @param clientId The client ID
+	 * @param clientId The client id
 	 */
 	public void setClientId(String clientId) 
 	{

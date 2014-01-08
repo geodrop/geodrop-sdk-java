@@ -63,6 +63,7 @@ public class CustomerCheck_Response extends GeodropResponse
 	 */
 	private String category;
 	  
+	CustomerCheck_Response() {}
 	@Override
 	public String toString() 
 	{
@@ -125,7 +126,7 @@ public class CustomerCheck_Response extends GeodropResponse
 
 	//getters
 	/**
-	 * @return The msisdn
+	 * @return Customer phone number in E.164 format (without +)
 	 */
 	public String getMsisdn() 
 	{
@@ -133,7 +134,7 @@ public class CustomerCheck_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The port number
+	 * @return DropPay port number
 	 */
 	public int getPort() 
 	{
@@ -141,7 +142,7 @@ public class CustomerCheck_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The code
+	 * @return Error code
 	 */
 	public int getCode() 
 	{
@@ -149,7 +150,7 @@ public class CustomerCheck_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The description
+	 * @return Verbose description of the error
 	 */
 	public String getDescription() 
 	{
@@ -157,7 +158,7 @@ public class CustomerCheck_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The mno
+	 * @return Short identifier label of network operator
 	 */
 	public String getMno()
 	{
@@ -165,7 +166,7 @@ public class CustomerCheck_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The status
+	 * @return Status of the port (ACTIVE, NOTACTIVE, SUSPENDED)
 	 */
 	public String getStatus() 
 	{
@@ -173,7 +174,7 @@ public class CustomerCheck_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The subscriber
+	 * @return Subscriber id
 	 */
 	public int getSubscriber() 
 	{
@@ -181,7 +182,7 @@ public class CustomerCheck_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The date
+	 * @return Subscription date
 	 */
 	public Date getDate() 
 	{
@@ -189,7 +190,7 @@ public class CustomerCheck_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The updated
+	 * @return Status change date
 	 */
 	public Date getUpdated() 
 	{
@@ -197,7 +198,7 @@ public class CustomerCheck_Response extends GeodropResponse
 	}
 
 	/**
-	 * @return The category
+	 * @return Subscription category
 	 */
 	public String getCategory() 
 	{

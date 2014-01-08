@@ -5,7 +5,6 @@ import java.util.HashMap;
 import com.geodrop.ContentType;
 import com.geodrop.GeodropRequest;
 import com.geodrop.HttpMethod;
-import com.geodrop.MustacheTemplate;
 import com.geodrop.Uri;
 
 /**
@@ -51,14 +50,14 @@ public class SMSJobsScheduledDelete extends GeodropRequest
 	}
 	
 	@Override
-	public boolean decodeResponse(String httpResponse) 
+	protected boolean decodeResponse(String httpResponse) 
 	{
 		this.response = new SMSJobsScheduled_Response();
 		return this.response.fillParameters(httpResponse);
 	}
 	
 	@Override
-	public void createParams() 
+	protected void createParams() 
 	{
 		this.params = new HashMap<String, Object>();
 		
