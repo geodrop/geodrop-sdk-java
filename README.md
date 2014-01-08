@@ -49,7 +49,7 @@ if(session.runMethod(requestPortChallenge))
 
 Documentation
 -----
-The documentation is available in the [doc folder](https://github.com/geodrop/geodrop-sdk-java/tree/master/doc).
+The documentation is available at this [link](http://geodrop.github.io/geodrop-sdk-java/).
 
 Versioning
 -----
