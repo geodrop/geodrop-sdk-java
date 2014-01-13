@@ -53,10 +53,26 @@ public class PortDescriptor_Response extends GeodropResponse
 			doc.getDocumentElement().normalize();
 			
 			Element portsElement = (Element) doc.getElementsByTagName("ports").item(0);
-			NodeList nodePorts = portsElement.getElementsByTagName("port");
-			for(int index = 0; index < nodePorts.getLength(); index++)
+			
+			if(portsElement != null)
 			{
-				Element portElement = (Element) nodePorts.item(index);
+				NodeList nodePorts = portsElement.getElementsByTagName("port");
+				for(int index = 0; index < nodePorts.getLength(); index++)
+				{
+					Element portElement = (Element) nodePorts.item(index);
+					try
+					{
+						int idPort = Integer.parseInt(portElement.getAttribute("id"));
+						Port port = this.fillPortParameters(portElement);
+						ports.put(idPort, port);
+					}
+					catch(Exception e)
+					{}
+				}
+			}
+			else //only one port
+			{
+				Element portElement = (Element) doc.getElementsByTagName("port").item(0);
 				try
 				{
 					int idPort = Integer.parseInt(portElement.getAttribute("id"));

@@ -46,7 +46,7 @@ public class SMSJobsScheduledDelete extends GeodropRequest
 		this.contentType = ContentType.XML;
 		SMSJobsScheduledDelete.action = JobsScheduledAction.DELETE;
 		this.templateName = MustacheTemplate.SMS_Scheduled_Status_Delete;
-		this.jobId = jobId;
+		this.setJobId(jobId);
 	}
 	
 	@Override

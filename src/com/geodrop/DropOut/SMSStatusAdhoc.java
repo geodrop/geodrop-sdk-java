@@ -66,22 +66,15 @@ public class SMSStatusAdhoc extends GeodropRequest
 	 */
 	private void initialize(Vector<StatusAdhocDest> dest, String clientId) throws Exception
 	{
-		//check msisdns format
-		for(int index = 0; index < dest.size(); index++)
-		{
-			if(!this.checkMsisdnE164Format(dest.get(index).getMsisdn(),true))
-			{
-				throw new Exception(ErrorType.MALFORMED_MSISDNS);
-			}
-		}
+
 		//set parameters
 		this.uri = Uri.OUT_SMS_STATUS;
 		this.httpMethod = HttpMethod.PUT;
 		this.contentType = ContentType.XML;
 		SMSStatusAdhoc.requestType = StatusRequestType.ADHOC;
 		this.templateName = MustacheTemplate.SMS_Status;
-		this.dest = dest;
-		this.clientId = clientId;
+		this.setDest(dest);
+		this.setClientId(clientId);
 	}
 	
 	@Override
@@ -133,9 +126,18 @@ public class SMSStatusAdhoc extends GeodropRequest
 	 * @param dest The vector of <CODE>StatusAdhocDest</CODE>,
 	 * each <CODE>StatusAdhocDest</CODE>
 	 * uniquely identifies a single SMS message in the Geodrop archive
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setDest(Vector<StatusAdhocDest> dest) 
+	public void setDest(Vector<StatusAdhocDest> dest) throws Exception 
 	{
+		//check msisdns format
+		for(int index = 0; index < dest.size(); index++)
+		{
+			if(!this.checkMsisdnE164Format(dest.get(index).getMsisdn(),true))
+			{
+				throw new Exception(ErrorType.MALFORMED_MSISDNS);
+			}
+		}
 		this.dest = dest;
 	}
 

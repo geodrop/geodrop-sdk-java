@@ -94,48 +94,18 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	 */
 	private void initialize(String jobId,Date deferredTime,String messageText,Vector<String> msisdnToDelete,Vector<String> msisdnToAdd,String tpoa) throws Exception
 	{
-		//check msisdns
-		int index;
-		if(msisdnToDelete != null)
-		{
-			for(index = 0; index <= msisdnToDelete.size(); index++)
-			{
-				if(!this.checkMsisdnE164Format(msisdnToDelete.get(index), false))
-				{
-					throw new Exception(ErrorType.MALFORMED_MSISDNS);
-				}
-			}
-		}
-		if(msisdnToAdd != null)
-		{
-			for(index = 0; index <= msisdnToAdd.size(); index++)
-			{
-				if(!this.checkMsisdnE164Format(msisdnToAdd.get(index), false))
-				{
-					throw new Exception(ErrorType.MALFORMED_MSISDNS);
-				}
-			}
-		}
-		//check date
-		if(deferredTime != null)
-		{
-			if (deferredTime.before(new Date()))
-			{
-				throw new Exception(ErrorType.MALFORMED_OR_PAST_TIME);
-			}
-		}
 		//set parameters
 		this.uri = Uri.OUT_SMS_JOBS_SCHEDULED;
 		this.httpMethod = HttpMethod.POST;
 		this.contentType = ContentType.XML;
 		SMSJobsScheduledModify.action = JobsScheduledAction.MODIFY;
 		this.templateName = MustacheTemplate.SMS_Scheduled_Modify;
-		this.jobId = jobId;
-		this.messageText = messageText;
-		this.msisdnToAdd = msisdnToAdd;
-		this.msisdnToDelete = msisdnToDelete;
-		this.tpoa = tpoa;
-		this.deferredTime = deferredTime;
+		this.setJobId(jobId);
+		this.setMessageText(messageText);
+		this.setMsisdnToAdd(msisdnToAdd);
+		this.setMsisdnToDelete(msisdnToDelete);
+		this.setTpoa(tpoa);
+		this.setDeferredTime(deferredTime);
 	}
 	
 	@Override
@@ -236,18 +206,44 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	/**
 	 * @param msisdnToDelete The vector of msisdns to delete; 
 	 * each msisdn is in E.164 format with '+'
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setMsisdnToDelete(Vector<String> msisdnToDelete) 
+	public void setMsisdnToDelete(Vector<String> msisdnToDelete) throws Exception 
 	{
+		//check msisdns
+		int index;
+		if(msisdnToDelete != null)
+		{
+			for(index = 0; index <= msisdnToDelete.size(); index++)
+			{
+				if(!this.checkMsisdnE164Format(msisdnToDelete.get(index), false))
+				{
+					throw new Exception(ErrorType.MALFORMED_MSISDNS);
+				}
+			}
+		}
 		this.msisdnToDelete = msisdnToDelete;
 	}
 
 	/**
 	 * @param msisdnToAdd The vector of msisdns to add; 
 	 * each msisdn is in E.164 format with '+'
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setMsisdnToAdd(Vector<String> msisdnToAdd) 
+	public void setMsisdnToAdd(Vector<String> msisdnToAdd) throws Exception 
 	{
+		//check msisdns
+		int index;
+		if(msisdnToAdd != null)
+		{
+			for(index = 0; index <= msisdnToAdd.size(); index++)
+			{
+				if(!this.checkMsisdnE164Format(msisdnToAdd.get(index), false))
+				{
+					throw new Exception(ErrorType.MALFORMED_MSISDNS);
+				}
+			}
+		}
 		this.msisdnToAdd = msisdnToAdd;
 	}
 
@@ -263,9 +259,18 @@ public class SMSJobsScheduledModify extends GeodropRequest
 	 * @param deferredTime Date and time in the format "Y-m-d H:i:s",
 	 * used to send the message to a certain date,
 	 * if not specified the message is sent immediately
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setDeferredTime(Date deferredTime) 
+	public void setDeferredTime(Date deferredTime) throws Exception 
 	{
+		//check date
+		if(deferredTime != null)
+		{
+			if (deferredTime.before(new Date()))
+			{
+				throw new Exception(ErrorType.MALFORMED_OR_PAST_TIME);
+			}
+		}
 		this.deferredTime = deferredTime;
 	}
 }

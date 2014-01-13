@@ -48,17 +48,13 @@ public class CustomerCheck extends GeodropRequest
 	 */
 	private void initialize(int port,String msisdn) throws Exception
 	{
-		//check msisdns format
-		if(!this.checkMsisdnE164Format(msisdn,false))
-		{
-			throw new Exception(ErrorType.MALFORMED_MSISDN);
-		}
+		
 		//set parameters
 		this.uri = Uri.PAY_CUSTOMERS_CHECK;
 		this.httpMethod = HttpMethod.POST;
 		this.contentType = ContentType.RAW;
-		this.port = port;
-		this.msisdn = msisdn;
+		this.setPort(port);
+		this.setMsisdn(msisdn);
 	}
 	
 	@Override
@@ -104,9 +100,15 @@ public class CustomerCheck extends GeodropRequest
 
 	/**
 	 * @param msisdn Customer phone number in E.164 format (without +)
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setMsisdn(String msisdn) 
+	public void setMsisdn(String msisdn) throws Exception 
 	{
+		//check msisdns format
+		if(!this.checkMsisdnE164Format(msisdn,false))
+		{
+			throw new Exception(ErrorType.MALFORMED_MSISDN);
+		}
 		this.msisdn = msisdn;
 	}
 

@@ -81,31 +81,15 @@ public class SMSSend extends GeodropRequest
      */
     private void initialize(Vector<String> destMsisdns,String messageText,String tpoa,Date deferred) throws Exception
     {
-		//check msisdns format
-		for(int index = 0; index < destMsisdns.size(); index++)
-		{
-			if(!this.checkMsisdnE164Format(destMsisdns.get(index),true))
-			{
-				throw new Exception(ErrorType.MALFORMED_MSISDNS);
-			}
-		}
-		//check date
-		if(deferred != null)
-		{
-			if (deferred.before(new Date()))
-			{
-				throw new Exception(ErrorType.MALFORMED_OR_PAST_TIME);
-			}
-		}
     	//set parameters
 	    this.uri = Uri.OUT_SMS_SEND;
 	    this.httpMethod = HttpMethod.POST;
 	    this.contentType = ContentType.XML;
 	    this.templateName = MustacheTemplate.SMS_Send_Estimatecost;
-	    this.destMsisdns = destMsisdns;
-	    this.messageText = messageText;
-	    this.tpoa = tpoa;
-	    this.deferred = deferred;
+	    this.setDestMsisdns(destMsisdns);
+	    this.setMessageText(messageText);
+	    this.setTpoa(tpoa);
+	    this.setDeferred(deferred);
     }
     
 	@Override
@@ -177,9 +161,18 @@ public class SMSSend extends GeodropRequest
 	/**
 	 * @param destMsisdns The vector of msisdns of the recipients;
      * each msisdn is in E.164 format with '+'
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setDestMsisdns(Vector<String> destMsisdns) 
+	public void setDestMsisdns(Vector<String> destMsisdns) throws Exception 
 	{
+		//check msisdns format
+		for(int index = 0; index < destMsisdns.size(); index++)
+		{
+			if(!this.checkMsisdnE164Format(destMsisdns.get(index),true))
+			{
+				throw new Exception(ErrorType.MALFORMED_MSISDNS);
+			}
+		}
 		this.destMsisdns = destMsisdns;
 	}
 
@@ -195,9 +188,18 @@ public class SMSSend extends GeodropRequest
 	 * @param deferred Date and time in the format "Y-m-d H:i:s",
      * used to send the message to a certain date,
      * if not specified the message is sent immediately
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setDeferred(Date deferred) 
+	public void setDeferred(Date deferred) throws Exception 
 	{
+		//check date
+		if(deferred != null)
+		{
+			if (deferred.before(new Date()))
+			{
+				throw new Exception(ErrorType.MALFORMED_OR_PAST_TIME);
+			}
+		}
 		this.deferred = deferred;
 	}
 }

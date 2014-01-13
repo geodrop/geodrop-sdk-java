@@ -95,28 +95,15 @@ public class PortTrigger extends GeodropRequest
 	 */
 	private void initialize(int port,String msisdn,String text,Date time,String custom) throws Exception
 	{
-		//check msisdns format
-		if(!this.checkMsisdnE164Format(msisdn,false))
-		{
-			throw new Exception(ErrorType.MALFORMED_MSISDN);
-		}
-		//check date
-		if(time != null)
-		{
-			if (time.before(new Date()))
-			{
-				throw new Exception(ErrorType.MALFORMED_OR_PAST_TIME);
-			}
-		}
 		//set parameters
 		this.uri = Uri.PAY_PORT_TRIGGER;
 		this.httpMethod = HttpMethod.POST;
 		this.contentType = ContentType.RAW;
-		this.port = port;
-		this.msisdn = msisdn;
-		this.text = text;
-		this.time = time;
-		this.custom = custom;
+		this.setPort(port);
+		this.setMsisdn(msisdn);
+		this.setText(text);
+		this.setTime(time);
+		this.setCustom(custom);
 	}
 	  
 	@Override
@@ -193,9 +180,15 @@ public class PortTrigger extends GeodropRequest
 
 	/**
 	 * @param msisdn Customer phone number in E.164 format (without +)
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setMsisdn(String msisdn) 
+	public void setMsisdn(String msisdn) throws Exception 
 	{
+		//check msisdns format
+		if(!this.checkMsisdnE164Format(msisdn,false))
+		{
+			throw new Exception(ErrorType.MALFORMED_MSISDN);
+		}
 		this.msisdn = msisdn;
 	}
 
@@ -217,9 +210,18 @@ public class PortTrigger extends GeodropRequest
 
 	/**
 	 * @param time Time to schedule trigger, default is now
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setTime(Date time) 
+	public void setTime(Date time) throws Exception 
 	{
+		//check date
+		if(time != null)
+		{
+			if (time.before(new Date()))
+			{
+				throw new Exception(ErrorType.MALFORMED_OR_PAST_TIME);
+			}
+		}
 		this.time = time;
 	}
 }

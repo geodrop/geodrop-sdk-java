@@ -94,21 +94,16 @@ public class SMSStatusRange extends GeodropRequest
 	 */
 	private void initialize(Date rangeDateFrom,Date rangeDateTo,String clientId,String rangeLimit) throws Exception
 	{
-		//check limit format
-		if(!this.checkLimitFormat(rangeLimit))
-		{
-			throw new Exception(ErrorType.MALFORMED_LIMIT);
-		}
 		//set parameters
 		this.uri = Uri.OUT_SMS_STATUS;
 		this.httpMethod = HttpMethod.PUT;
 		this.contentType = ContentType.XML;
 		SMSStatusRange.requestType = StatusRequestType.RANGE;
-		this.rangeDateFrom = rangeDateFrom;
-		this.rangeDateTo = rangeDateTo;
-		this.clientId = clientId;
-		this.rangeLimit = rangeLimit;
 		this.templateName = MustacheTemplate.SMS_Status;
+		this.setRangeDateFrom(rangeDateFrom);
+		this.setRangeDateTo(rangeDateTo);
+		this.setClientId(clientId);
+		this.setRangeLimit(rangeLimit);
 	}
 	
 	@Override
@@ -191,9 +186,15 @@ public class SMSStatusRange extends GeodropRequest
 	 * it consist of two integers separated by a comma,
 	 * the first one indicates the position of the first required result
 	 * and the second the total number of result to return
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setRangeLimit(String rangeLimit) 
+	public void setRangeLimit(String rangeLimit) throws Exception 
 	{
+		//check limit format
+		if(!this.checkLimitFormat(rangeLimit))
+		{
+			throw new Exception(ErrorType.MALFORMED_LIMIT);
+		}
 		this.rangeLimit = rangeLimit;
 	}
 

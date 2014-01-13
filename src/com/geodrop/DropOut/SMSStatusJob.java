@@ -83,20 +83,15 @@ public class SMSStatusJob extends GeodropRequest
 	 */
 	private void initialize(String jobOrderid,String clientId,String jobLimit) throws Exception
 	{
-		//check limit format
-		if(!this.checkLimitFormat(jobLimit))
-		{
-			throw new Exception(ErrorType.MALFORMED_LIMIT);
-		}
 		//set parameters
 		this.uri = Uri.OUT_SMS_STATUS;
 		this.httpMethod = HttpMethod.PUT;
 		this.contentType = ContentType.XML;
 		SMSStatusJob.requestType = StatusRequestType.JOB;
-		this.jobOrderid = jobOrderid;
-		this.clientId = clientId;
-		this.jobLimit = jobLimit;
 		this.templateName = MustacheTemplate.SMS_Status;
+		this.setJobOrderid(jobOrderid);
+		this.setClientId(clientId);
+		this.setJobLimit(jobLimit);
 	}
 	
 	@Override
@@ -160,9 +155,15 @@ public class SMSStatusJob extends GeodropRequest
 	 * it consist of two integers separated by a comma,
 	 * the first one indicates the position of the first required result
 	 * and the second the total number of result to return
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setJobLimit(String jobLimit) 
+	public void setJobLimit(String jobLimit) throws Exception 
 	{
+		//check limit format
+		if(!this.checkLimitFormat(jobLimit))
+		{
+			throw new Exception(ErrorType.MALFORMED_LIMIT);
+		}
 		this.jobLimit = jobLimit;
 	}
 

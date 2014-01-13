@@ -49,21 +49,13 @@ public class SMSEstimatecost extends GeodropRequest
 	 */
 	private void initialize(Vector<String> destMsisdns,String messageText) throws Exception
 	{
-		//check msisdns format
-		for(int index = 0; index < destMsisdns.size(); index++)
-		{
-			if(!this.checkMsisdnE164Format(destMsisdns.get(index),true))
-			{
-				throw new Exception(ErrorType.MALFORMED_MSISDNS);
-			}
-		}
 		//set parameters
 		this.uri = Uri.OUT_SMS_ESTIMATECOST;
 	    this.httpMethod = HttpMethod.POST;
 	    this.contentType = ContentType.XML;
 	    this.templateName = MustacheTemplate.SMS_Send_Estimatecost;
-	    this.destMsisdns = destMsisdns;
-	    this.messageText = messageText;
+	    this.setDestMsisdns(destMsisdns);
+	    this.setMessageText(messageText);
 	}
 	
 	@Override
@@ -103,9 +95,18 @@ public class SMSEstimatecost extends GeodropRequest
 	/**
 	 * @param destMsisdns A vector that contains msisdns of the recipients;
 	 * each msisdn is in E.164 format with '+'
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setDestMsisdns(Vector<String> destMsisdns) 
+	public void setDestMsisdns(Vector<String> destMsisdns) throws Exception 
 	{
+		//check msisdns format
+		for(int index = 0; index < destMsisdns.size(); index++)
+		{
+			if(!this.checkMsisdnE164Format(destMsisdns.get(index),true))
+			{
+				throw new Exception(ErrorType.MALFORMED_MSISDNS);
+			}
+		}
 		this.destMsisdns = destMsisdns;
 	}
 

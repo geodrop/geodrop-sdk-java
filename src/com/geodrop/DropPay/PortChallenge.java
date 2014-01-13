@@ -75,24 +75,14 @@ public class PortChallenge extends GeodropRequest
 	 */
 	private void initialize(int port,String msisdn,String text,String custom) throws Exception
 	{
-		//check msisdns format
-		if(!this.checkMsisdnE164Format(msisdn,false))
-		{
-			throw new Exception(ErrorType.MALFORMED_MSISDN);
-		}
-		//check message text
-		if(!text.contains("$$PIN$$"))
-		{
-			throw new Exception(ErrorType.MALFORMED_TEXT_CHALLENGE);
-		}
 		//set parameters
 		this.uri = Uri.PAY_PORT_CHALLENGE;
 		this.httpMethod = HttpMethod.POST;
 		this.contentType = ContentType.RAW;
-		this.port = port;
-		this.msisdn = msisdn;
-		this.custom = custom;
-		this.text = text;
+		this.setPort(port);
+		this.setMsisdn(msisdn);
+		this.setCustom(custom);
+		this.setText(text);
 	}
 	
 	@Override
@@ -157,9 +147,15 @@ public class PortChallenge extends GeodropRequest
 
 	/**
 	 * @param msisdn Customer phone number in E.164 format (without +)
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setMsisdn(String msisdn) 
+	public void setMsisdn(String msisdn) throws Exception 
 	{
+		//check msisdns format
+		if(!this.checkMsisdnE164Format(msisdn,false))
+		{
+			throw new Exception(ErrorType.MALFORMED_MSISDN);
+		}
 		this.msisdn = msisdn;
 	}
 
@@ -174,9 +170,15 @@ public class PortChallenge extends GeodropRequest
 	/**
 	 * @param text Text to send, encoded in UTF-8, up to 160 characters,
 	 * it must contain $$PIN$$ placeholder
+	 * @throws Exception If parameters are not valid
 	 */
-	public void setText(String text) 
+	public void setText(String text) throws Exception 
 	{
+		//check message text
+		if(!text.contains("$$PIN$$"))
+		{
+			throw new Exception(ErrorType.MALFORMED_TEXT_CHALLENGE);
+		}
 		this.text = text;
 	}
 }
