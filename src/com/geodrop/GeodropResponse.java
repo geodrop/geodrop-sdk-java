@@ -5,7 +5,7 @@ import java.util.Vector;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.geodrop.DropOut.Report;
+import com.geodrop.SMSOut.Report;
 
 /**
  * Generic Geodrop response

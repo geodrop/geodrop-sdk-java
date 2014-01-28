@@ -21,7 +21,7 @@ GeodropSession session = SessionFactory.buildSession_ResourceOwnerPasswordCreden
 ```
 To send an SMS:
 ```java
-import com.geodrop.DropOut.SMSSend;
+import com.geodrop.SMSOut.SMSSend;
 ...
 SMSSend requestSMSSend = new SMSSend(vectorOfMsisdns,"message text","sender");
 session.runMethod(requestSMSSend);
