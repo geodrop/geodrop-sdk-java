@@ -43,8 +43,24 @@ public class SMSSend extends GeodropRequest
      * used to send the message to a certain date,
      * if not specified the message is sent immediately
      */
-    private Date deferred;
-	
+	private Date deferred;
+	/**
+	 * Url for job notification
+	 */
+	private Vector<String> jobnotify;
+	/**
+	 * Url for dlr notification
+	 */
+	private Vector<String> dlrnotify;
+	/**
+	 * Time from which messages are not sent (HH:MM)
+	 */
+	private Date runrange_ltime;
+	/**
+	 * Number of hours during which messages are not sent
+	 */
+	private Integer runrange_timewindow;
+
     /**
      * Creates a new <CODE>SMSSend</CODE> instance
      * 
@@ -79,9 +95,23 @@ public class SMSSend extends GeodropRequest
      * @param messageText The message text
      * @param tpoa The tpoa
      * @param deferred The deferred time
+     * @param jobnotify Url for job notification
+     * @param dlrnotify Url for dlr notification
+     * @param runrange_ltime Time from which messages are not sent (HH:MM)
+     * @param runrange_timewindow Number of hours during which messages are not sent
      * @throws Exception If parameters are not valid
      */
-    private void initialize(Vector<String> destMsisdns,String messageText,String tpoa,Date deferred) throws Exception
+    private void initialize(
+    	Vector<String> destMsisdns,
+    	String messageText,
+    	String tpoa,
+    	Date deferred,
+    	Vector<String> jobnotify,
+    	Vector<String> dlrnotify,
+    	Date runrange_ltime,
+    	Integer runrange_timewindow
+
+    	) throws Exception
     {
     	//set parameters
 	    this.uri = Uri.OUT_SMS_SEND;
@@ -92,6 +122,10 @@ public class SMSSend extends GeodropRequest
 	    this.setMessageText(messageText);
 	    this.setTpoa(tpoa);
 	    this.setDeferred(deferred);
+	    this.set_jobnotify(jobnotify);
+	    this.set_dlrnotify(dlrnotify);
+	    this.set_runrange_ltime(runrange_ltime);
+	    this.set_runrange_timewindow(runrange_timewindow);
     }
     
 	@Override
@@ -112,6 +146,22 @@ public class SMSSend extends GeodropRequest
 		{	
 			SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			this.params.put("deferred", dateParser.format(this.deferred));
+		}
+		if(this.jobnotify != null)
+		{
+			this.params.put("job_notifyurl",this.jobnotify);
+		}
+		if(this.dlrnotify != null)
+		{
+			this.params.put("dlr_notifyurl",this.dlrnotify);
+		}
+		if(this.runrange_ltime != null && this.runrange_timewindow != null)
+		{
+			Vector<HashMap<String, String>> runrange = new Vector<HashMap<String, String>>();
+			SimpleDateFormat dateParser = new SimpleDateFormat("HH:mm");
+			runrange.put("runrange_ltime", dateParser.format(this.runrange_ltime));
+			runrange.put("runrange_timewindow", runrange_ltime.format(this.runrange_timewindow));
+			this.params.put("runrange",runrange);
 		}
 	}
 
@@ -151,6 +201,38 @@ public class SMSSend extends GeodropRequest
 		return this.deferred;
 	}
 	
+	/**
+	 * @return The url for job notification
+	 */
+	public String get_jobnotify()
+	{
+		return this.jobnotify;
+	}
+
+	/**
+	 * @return The url for dlr notification
+	 */
+	public String get_dlrnotify()
+	{
+		return this.dlrnotify;
+	}
+
+	/**
+	 * @return The time from which messages are not sent
+	 */
+	public Date get_runrange_ltime()
+	{
+		return this.runrange_ltime;
+	}
+
+	/**
+	 * @return The number of hours during which messages are not sent
+	 */
+	public function get_runrange_timewindow()
+	{
+		return this.runrange_timewindow;
+	}
+
 	//setters
 	/**
 	 * @param messageText The text of the message to send
@@ -203,5 +285,36 @@ public class SMSSend extends GeodropRequest
 			}
 		}
 		this.deferred = deferred;
+	}
+	/**
+	 * @param jobnotify Url for job notification
+	 */
+	public void set_jobnotify(Vector<String> jobnotify)
+	{
+		this.jobnotify = jobnotify;
+	}
+
+	/**
+	 * @param dlrnotify Url for dlr notification
+	 */
+	public void set_dlrnotify(Vector<String> dlrnotify)
+	{
+		this.dlrnotify = dlrnotify;
+	}
+
+	/**
+ 	 * @param date runrange_ltime Time from which messages are not sent (HH:MM)
+	 */
+	public void set_runrange_ltime(Date runrange_ltime)
+	{
+		this.runrange_ltime = runrange_ltime;
+	}
+
+	/**
+	 * @param runrange_timewindow Number of hours during which messages are not sent
+	 */
+	public function set_runrange_timewindow(Integer runrange_timewindow)
+	{
+		this.runrange_timewindow = runrange_timewindow;
 	}
 }

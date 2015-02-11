@@ -21,6 +21,13 @@ class MustacheTemplate
 		+		"</LIST>"
 		+		"{{#tpoa}}<TPOA>{{{tpoa}}}</TPOA>{{/tpoa}}" //only in SMSSend
 		+		"{{#deferred}}<DEFERRED>{{deferred}}</DEFERRED>{{/deferred}}" //only in SMSSend
+		+ 		"<JOBNOTIFY>"
+		+			"{{#job_notifyurl}}<NOTIFYURL>{{job_notifyurl}}</NOTIFYURL>{{/job_notifyurl}}"
+		+		"</JOBNOTIFY>"
+		+		"<DLRNOTIFY>"
+		+			"{{#dlr_notifyurl}}<NOTIFYURL>{{dlr_notifyurl}}</NOTIFYURL>{{/dlr_notifyurl}}"
+		+		"</DLRNOTIFY>"
+		+		"{{#runrange}}<RUNRANGE><L_TIME>{{runrange_ltime}}</L_TIME><TIME_WINDOW>{{runrange_timewindow}}</TIME_WINDOW></RUNRANGE>{{/runrange}}"
 		+	"</GEOSMS>";
 		
 	static final String SMS_Status = 
