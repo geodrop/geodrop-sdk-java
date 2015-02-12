@@ -71,7 +71,7 @@ public class SMSSend extends GeodropRequest
      */
     public SMSSend(Vector<String> destMsisdns,String messageText,String tpoa) throws Exception
     {
-    	this.initialize(destMsisdns,messageText,tpoa,null);
+    	this.initialize(destMsisdns,messageText,tpoa,null,null,null,null,null);
     }
     
     /**
@@ -83,9 +83,17 @@ public class SMSSend extends GeodropRequest
      * @param deferred The deferred time
      * @throws Exception If parameters are not valid
      */
-    public SMSSend(Vector<String> destMsisdns,String messageText,String tpoa,Date deferred) throws Exception
+    public SMSSend(
+    		Vector<String> destMsisdns,
+    		String messageText,
+    		String tpoa,
+    		Date deferred,
+    		Vector<String> jobnotify,
+        	Vector<String> dlrnotify,
+        	Date runrange_ltime,
+        	Integer runrange_timewindow ) throws Exception
     {
-    	this.initialize(destMsisdns,messageText,tpoa,deferred);
+    	this.initialize(destMsisdns,messageText,tpoa,deferred,jobnotify,dlrnotify,runrange_ltime,runrange_timewindow);
     }
     
     /**
@@ -109,9 +117,7 @@ public class SMSSend extends GeodropRequest
     	Vector<String> jobnotify,
     	Vector<String> dlrnotify,
     	Date runrange_ltime,
-    	Integer runrange_timewindow
-
-    	) throws Exception
+    	Integer runrange_timewindow ) throws Exception
     {
     	//set parameters
 	    this.uri = Uri.OUT_SMS_SEND;
@@ -158,9 +164,11 @@ public class SMSSend extends GeodropRequest
 		if(this.runrange_ltime != null && this.runrange_timewindow != null)
 		{
 			Vector<HashMap<String, String>> runrange = new Vector<HashMap<String, String>>();
+			HashMap<String, String> runrange_entry = new HashMap<String, String>();
 			SimpleDateFormat dateParser = new SimpleDateFormat("HH:mm");
-			runrange.put("runrange_ltime", dateParser.format(this.runrange_ltime));
-			runrange.put("runrange_timewindow", runrange_ltime.format(this.runrange_timewindow));
+			runrange_entry.put("runrange_ltime", dateParser.format(this.runrange_ltime));
+			runrange_entry.put("runrange_timewindow", this.runrange_timewindow.toString());
+			runrange.add(runrange_entry);
 			this.params.put("runrange",runrange);
 		}
 	}
@@ -204,7 +212,7 @@ public class SMSSend extends GeodropRequest
 	/**
 	 * @return The url for job notification
 	 */
-	public String get_jobnotify()
+	public Vector<String> get_jobnotify()
 	{
 		return this.jobnotify;
 	}
@@ -212,7 +220,7 @@ public class SMSSend extends GeodropRequest
 	/**
 	 * @return The url for dlr notification
 	 */
-	public String get_dlrnotify()
+	public Vector<String> get_dlrnotify()
 	{
 		return this.dlrnotify;
 	}
@@ -228,7 +236,7 @@ public class SMSSend extends GeodropRequest
 	/**
 	 * @return The number of hours during which messages are not sent
 	 */
-	public function get_runrange_timewindow()
+	public Integer get_runrange_timewindow()
 	{
 		return this.runrange_timewindow;
 	}
@@ -313,7 +321,7 @@ public class SMSSend extends GeodropRequest
 	/**
 	 * @param runrange_timewindow Number of hours during which messages are not sent
 	 */
-	public function set_runrange_timewindow(Integer runrange_timewindow)
+	public void set_runrange_timewindow(Integer runrange_timewindow)
 	{
 		this.runrange_timewindow = runrange_timewindow;
 	}
