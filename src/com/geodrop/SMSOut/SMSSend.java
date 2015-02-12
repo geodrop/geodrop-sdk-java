@@ -353,7 +353,7 @@ public class SMSSend extends GeodropRequest
 	}
 
 	/**
- 	 * @param date runrange_ltime Time from which messages are not sent (HH:MM)
+ 	 * @param runrange_ltime Time from which messages are not sent (HH:MM)
 	 */
 	public void set_runrange_ltime(Date runrange_ltime)
 	{
