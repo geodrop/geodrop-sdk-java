@@ -81,6 +81,10 @@ public class SMSSend extends GeodropRequest
      * @param messageText The message text
      * @param tpoa The tpoa
      * @param deferred The deferred time
+     * @param jobnotify Url for job notification
+     * @param dlrnotify Url for dlr notification
+     * @param runrange_ltime Time from which messages are not sent (HH:MM)
+     * @param runrange_timewindow Number of hours during which messages are not sent
      * @throws Exception If parameters are not valid
      */
     public SMSSend(
@@ -94,6 +98,28 @@ public class SMSSend extends GeodropRequest
         	Integer runrange_timewindow ) throws Exception
     {
     	this.initialize(destMsisdns,messageText,tpoa,deferred,jobnotify,dlrnotify,runrange_ltime,runrange_timewindow);
+    }
+    
+    /**
+     * Creates a new <CODE>SMSSend</CODE> instance
+     * 
+     * @param destMsisdns The msisdns
+     * @param messageText The message text
+     * @param tpoa The tpoa
+     * @param deferred The deferred time
+     * @param jobnotify Url for job notification
+     * @param dlrnotify Url for dlr notification
+     * @throws Exception If parameters are not valid
+     */
+    public SMSSend(
+    		Vector<String> destMsisdns,
+    		String messageText,
+    		String tpoa,
+    		Date deferred,
+    		Vector<String> jobnotify,
+        	Vector<String> dlrnotify) throws Exception
+    {
+    	this.initialize(destMsisdns,messageText,tpoa,deferred,jobnotify,dlrnotify,null,null);
     }
     
     /**
@@ -155,11 +181,27 @@ public class SMSSend extends GeodropRequest
 		}
 		if(this.jobnotify != null)
 		{
-			this.params.put("job_notifyurl",this.jobnotify);
+			this.params.put("jobnotify","");
+			Vector<HashMap<String, String>> job_notifyurl_vect = new Vector<HashMap<String, String>>();
+			for(int index_job=0; index_job < this.jobnotify.size(); index_job++ )
+			{
+				HashMap<String, String> job_notifyurl_map = new HashMap<String, String>();
+				job_notifyurl_map.put("job_url",this.jobnotify.get(index_job));
+				job_notifyurl_vect.add(job_notifyurl_map);
+			}
+			this.params.put("job_notifyurl",job_notifyurl_vect);
 		}
 		if(this.dlrnotify != null)
 		{
-			this.params.put("dlr_notifyurl",this.dlrnotify);
+			this.params.put("dlrnotify","");
+			Vector<HashMap<String, String>> dlr_notifyurl_vect = new Vector<HashMap<String, String>>();
+			for(int index_dlr=0; index_dlr < this.dlrnotify.size(); index_dlr++ )
+			{
+				HashMap<String, String> dlr_notifyurl_map = new HashMap<String, String>();
+				dlr_notifyurl_map.put("dlr_url",this.dlrnotify.get(index_dlr));
+				dlr_notifyurl_vect.add(dlr_notifyurl_map);
+			}
+			this.params.put("dlr_notifyurl",dlr_notifyurl_vect);
 		}
 		if(this.runrange_ltime != null && this.runrange_timewindow != null)
 		{

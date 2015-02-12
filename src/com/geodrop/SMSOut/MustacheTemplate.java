@@ -20,13 +20,13 @@ class MustacheTemplate
 		+			"{{#dest_msisdns}}<DEST msisdn=\"{{this}}\"/>{{/dest_msisdns}}"
 		+		"</LIST>"
 		+		"{{#tpoa}}<TPOA>{{{tpoa}}}</TPOA>{{/tpoa}}" //only in SMSSend
-		+		"{{#deferred}}<DEFERRED>{{deferred}}</DEFERRED>{{/deferred}}" //only in SMSSend
-		+ 		"<JOBNOTIFY>"
-		+			"{{#job_notifyurl}}<NOTIFYURL>{{job_notifyurl}}</NOTIFYURL>{{/job_notifyurl}}"
-		+		"</JOBNOTIFY>"
-		+		"<DLRNOTIFY>"
-		+			"{{#dlr_notifyurl}}<NOTIFYURL>{{dlr_notifyurl}}</NOTIFYURL>{{/dlr_notifyurl}}"
-		+		"</DLRNOTIFY>"
+		+		"{{#deferred}}<DEFERRED>{{deferred}}</DEFERRED>{{/deferred}}"
+		+ 		"{{#jobnotify}}<JOBNOTIFY>{{/jobnotify}}"
+		+			"{{#job_notifyurl}}<NOTIFYURL>{{job_url}}</NOTIFYURL>{{/job_notifyurl}}"
+		+		"{{#jobnotify}}</JOBNOTIFY>{{/jobnotify}}"
+		+ 		"{{#dlrnotify}}<DLRNOTIFY>{{/dlrnotify}}"
+		+			"{{#dlr_notifyurl}}<NOTIFYURL>{{dlr_url}}</NOTIFYURL>{{/dlr_notifyurl}}"
+		+		"{{#dlrnotify}}</DLRNOTIFY>{{/dlrnotify}}"
 		+		"{{#runrange}}<RUNRANGE><L_TIME>{{runrange_ltime}}</L_TIME><TIME_WINDOW>{{runrange_timewindow}}</TIME_WINDOW></RUNRANGE>{{/runrange}}"
 		+	"</GEOSMS>";
 		
