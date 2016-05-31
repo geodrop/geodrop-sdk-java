@@ -61,17 +61,17 @@ public class GeodropSession
 	  private String username;
 
 	  /**
-	   * User password
+	   * User's password
 	   */
 	  private String password;
 
 	  /**
 	   * Creates a new <CODE>GeodropSession</CODE> instance
 	   * 
-	   * @param tokenResponse The http response to the token request
 	   * @param applicationId The application id
 	   * @param applicationSecret The application secret
-	   * @throws ParseException If the http response cannot be parsed
+	   * @param username The username
+	   * @param password The user's password
 	   *
 	   */
     public GeodropSession(String applicationId, String applicationSecret, String username, String password)
