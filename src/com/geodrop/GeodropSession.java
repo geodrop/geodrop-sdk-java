@@ -97,7 +97,7 @@ public class GeodropSession
 	    	            "\trefresh_time: " + this.refreshTime + "\n" +
 	    	            "\trefresh_token: " + this.refreshToken + "\n" +
 	    	            "\tapplication_id: " + this.applicationId + "\n" +
-	    	            "\tapplication_secret: " + this.applicationSecret + "\n";
+                        "\tusername: " + this.username + "\n";
 	    return result;
 	  }
 	  
@@ -199,8 +199,6 @@ public class GeodropSession
 			  }
 			  catch(Exception e)
 			  {
-				  System.err.println(e.getMessage());
-				  //return false;
 			  }
 		  }
 		  while(attempt < 2 && failed);
@@ -298,7 +296,6 @@ public class GeodropSession
 		}
 		catch(Exception e)
 		{
-			System.err.println(e.getMessage());
 			return false;
 		}
 	    return true;
