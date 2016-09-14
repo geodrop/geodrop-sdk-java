@@ -56,19 +56,30 @@ public class GeodropSession
 	  private String applicationSecret;
 	  
 	  /**
+	   * Username
+	   */
+	  private String username;
+
+	  /**
+	   * User's password
+	   */
+	  private String password;
+
+	  /**
 	   * Creates a new <CODE>GeodropSession</CODE> instance
 	   * 
-	   * @param tokenResponse The http response to the token request
 	   * @param applicationId The application id
 	   * @param applicationSecret The application secret
-	   * @throws ParseException If the http response cannot be parsed
+	   * @param username The username
+	   * @param password The user's password
 	   *
 	   */
-	  public GeodropSession(String tokenResponse, String applicationId, String applicationSecret) throws ParseException
+    public GeodropSession(String applicationId, String applicationSecret, String username, String password)
 	  {
 		  this.applicationId = applicationId;
 		  this.applicationSecret = applicationSecret;
-		  this.parseTokenResponse(tokenResponse);
+          this.username = username;
+          this.password = password;
 	  }
 	  
 	  /**
@@ -86,7 +97,7 @@ public class GeodropSession
 	    	            "\trefresh_time: " + this.refreshTime + "\n" +
 	    	            "\trefresh_token: " + this.refreshToken + "\n" +
 	    	            "\tapplication_id: " + this.applicationId + "\n" +
-	    	            "\tapplication_secret: " + this.applicationSecret + "\n";
+                        "\tusername: " + this.username + "\n";
 	    return result;
 	  }
 	  
@@ -129,7 +140,14 @@ public class GeodropSession
 			  body = preparePostFields(request);
 		  }
 		  //System.out.println(body);
-		  
+
+          if (accessToken == null) {
+              if (!getTokens()) {
+                  System.err.println(ErrorType.AUTHENTICATION_FAILED);
+                  return false;
+              }
+          }
+
 		  //http request
 		  int attempt = 0;
 		  boolean failed = true;
@@ -140,8 +158,10 @@ public class GeodropSession
 			  {
 				  if(!this.tokenRefresh())
 				  {
-					  System.err.println(ErrorType.TOKEN_NOT_VALID);
-					  return false;
+                      if (!getTokens()) {
+                          System.err.println(ErrorType.AUTHENTICATION_FAILED);
+                          return false;
+                      }
 				  }
 			  }
 			  
@@ -162,6 +182,7 @@ public class GeodropSession
 		          //get the response
 		          BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		          
+                  httpResponse = "";
 		          String receivedLine = "";
 		          while((receivedLine = br.readLine()) != null)
 		          {
@@ -178,11 +199,9 @@ public class GeodropSession
 			  }
 			  catch(Exception e)
 			  {
-				  System.err.println(e.getMessage());
-				  //return false;
 			  }
 		  }
-		  while(attempt < 3 && failed);
+		  while(attempt < 2 && failed);
 
 		  //analyze http response
 		  if(failed)
@@ -194,6 +213,48 @@ public class GeodropSession
 		  return request.decodeResponse(httpResponse);
 	  }
 	  
+	  /**
+	   * Creates the tokens
+	   *
+	   * @return Returns <CODE>true</CODE> on success, <CODE>false</CODE> otherwise
+	   */
+	  private boolean getTokens()
+	  {
+          try {
+              //creation of connection
+              HttpURLConnection conn = (HttpURLConnection) new URL(Uri.TOKEN_REQUEST).openConnection();
+
+              //definition of header parameters
+              String fields = "grant_type=password&username="+URLEncoder.encode(username,"UTF-8")+"&password="+URLEncoder.encode(password,"UTF-8");
+              String authStr = applicationId + ":" + applicationSecret;
+              String auth = javax.xml.bind.DatatypeConverter.printBase64Binary(authStr.getBytes("UTF-8"));
+
+              //set connection parameters
+              conn.setRequestProperty("Authorization", "Basic " + auth);
+              conn.setRequestProperty("Content-type", ContentType.RAW);
+              conn.setRequestMethod(HttpMethod.POST);
+              conn.setDoOutput(true);
+
+              //run request
+              OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+              out.write(fields);
+              out.flush();
+
+              //get the response
+              BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+              String tokenResponse = br.readLine();
+
+              //close connection
+              out.close();
+              br.close();
+              parseTokenResponse(tokenResponse);
+              return true;
+          } catch (Exception e) {
+              System.err.println(e.getMessage());
+              return false;
+          }
+      }
+
 	  /**
 	   * Refreshes the token
 	   * 
@@ -235,7 +296,6 @@ public class GeodropSession
 		}
 		catch(Exception e)
 		{
-			System.err.println(e.getMessage());
 			return false;
 		}
 	    return true;

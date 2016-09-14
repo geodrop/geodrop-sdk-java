@@ -15,6 +15,7 @@ public final class Uri
 	public static final String OUT_SMS_ESTIMATECOST    = "https://api.geodrop.net/out/1/sms/1/estimatecost";
 	public static final String OUT_SMS_STATUS          = "https://api.geodrop.net/out/1/sms/1/status";
 	public static final String OUT_SMS_JOBS_SCHEDULED  = "https://api.geodrop.net/out/1/sms/1/jobs/scheduled";
+	public static final String OUT_SMS_CHECK_BALANCE = "https://api.geodrop.net/out/1/sms/1/estimatecost";
   
 	public static final String PAY_CONTENT_MESSAGE     = "https://api.geodrop.net/pay/2/content/message/1/";
 	public static final String PAY_CUSTOMERS_CHECK     = "https://api.geodrop.net/pay/2/customers/check/1/";

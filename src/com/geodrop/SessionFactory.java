@@ -31,40 +31,6 @@ public class SessionFactory
 	 */
 	public static GeodropSession buildSession_ResourceOwnerPasswordCredentials(String applicationId,String applicationSecret,String username,String password)
 	{
-		try
-		{
-			//creation of connection
-			HttpURLConnection conn = (HttpURLConnection) new URL(Uri.TOKEN_REQUEST).openConnection();
-			
-			//definition of header parameters
-			String fields = "grant_type=password&username="+URLEncoder.encode(username,"UTF-8")+"&password="+URLEncoder.encode(password,"UTF-8");
-			String authStr = applicationId + ":" + applicationSecret;
-			String auth = javax.xml.bind.DatatypeConverter.printBase64Binary(authStr.getBytes("UTF-8"));
-			
-			//set connection parameters
-			conn.setRequestProperty("Authorization", "Basic " + auth);
-			conn.setRequestProperty("Content-type", ContentType.RAW);
-			conn.setRequestMethod(HttpMethod.POST);
-			conn.setDoOutput(true);
-
-			//run request
-			OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-            out.write(fields);
-            out.flush();
-
-            //get the response
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String tokenResponse = br.readLine();
-
-            //close connection
-            out.close();
-            br.close();
-            return new GeodropSession(tokenResponse, applicationId, applicationSecret);
-		}
-		catch(Exception e)
-		{
-			System.err.println(e.getMessage());
-			return null;
-		}
+        return new GeodropSession(applicationId, applicationSecret, username, password);
 	}
 }
